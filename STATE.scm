@@ -1,500 +1,353 @@
-;;; STATE.scm - Oblibeny BOINC Platform Project State
-;;; Format: Guile Scheme S-expressions for AI context persistence
-;;; Last Updated: 2025-12-08
+;;; STATE.scm - Oblibeny BOINC Platform State Checkpoint
+;;; Format: state.scm v0.1 (https://github.com/hyperpolymath/state.scm)
 
-;;;============================================================================
-;;; METADATA
-;;;============================================================================
-(metadata
-  (format-version . "1.0")
-  (created . "2024-11")
-  (last-modified . "2025-12-08")
-  (project-name . "Oblibeny BOINC Platform")
-  (project-version . "0.6.0")
-  (status . "Active Development"))
+(define state
+  '((metadata
+     (format-version . "0.1")
+     (created . "2024-12-08T00:00:00Z")
+     (updated . "2024-12-08T00:00:00Z")
+     (project . "Oblibeny BOINC Platform")
+     (version . "0.6.0"))
 
-;;;============================================================================
-;;; PROJECT CONTEXT
-;;;============================================================================
-(project-context
-  (description . "Distributed verification platform for Oblibeny programming language using BOINC to crowdsource formal proofs")
-  (mission . "Build a two-phase programming language (Turing-complete compile-time, Turing-incomplete deploy-time) with crowd-sourced verification of 7 key properties")
-  (tech-stack
-    (parser . "Rust + pest")
-    (coordinator . "Elixir/OTP")
-    (proofs . "Lean 4")
-    (database . "ArangoDB")
-    (deployment . "Nix + Podman")
-    (config . "Nickel")
-    (validator . "Ada")
-    (dashboard . "Phoenix LiveView"))
-  (repository . "hyperpolymath/boinc-boinc"))
+    (user-context
+     (name . "Claude")
+     (role . "AI Development Assistant")
+     (preferences
+      (language . "en")
+      (tools . (nix rust elixir lean4))))
 
-;;;============================================================================
-;;; CURRENT POSITION
-;;;============================================================================
-(current-position
-  (overall-progress . 65)  ; percent
-  (phase . "Sprint 2 - Autonomous Build")
-  (summary . "Core infrastructure complete; parser and coordinator production-ready; proofs scaffolded; awaiting tests and integration")
+    (session-context
+     (branch . "claude/create-state-scm-018cnU2MJC9wMv3MTm6y83Fj")
+     (focus . "state-checkpoint-creation"))
 
-  (components
-    (rust-parser
-      (status . "complete")
-      (progress . 95)
-      (files-created . 15)
-      (loc . 2000)
-      (capabilities
-        "Parse Oblibeny programs"
-        "Build typed AST"
-        "Phase separation validation"
-        "Termination checking"
-        "Resource bounds analysis (WCET)"
-        "Call graph construction"
-        "CLI with subcommands"))
+    ;;; ============================================================
+    ;;; CURRENT POSITION
+    ;;; ============================================================
 
-    (elixir-coordinator
-      (status . "complete")
-      (progress . 90)
-      (files-created . 8)
-      (loc . 1500)
-      (capabilities
-        "OTP supervision tree"
-        "Work unit generation"
-        "Byzantine fault-tolerant validation (2/3 quorum)"
-        "Volunteer reliability scoring"
-        "ArangoDB integration"
-        "Telemetry"))
+    (current-position
+     (summary . "Infrastructure MVP complete; testing and proofs incomplete")
+     (completion-percent . 65)
 
-    (lean-proofs
-      (status . "scaffolding")
-      (progress . 40)
-      (files-created . 7)
-      (loc . 800)
-      (capabilities
-        "Formalized syntax"
-        "Operational semantics"
-        "Property 1-3 proof scaffolds")
-      (missing
-        "Actual proofs (sorry placeholders)"
-        "Properties 4-7"
-        "Proof automation tactics"))
+     (components
+      ((name . "rust-parser")
+       (status . complete)
+       (percent . 95)
+       (loc . 2374)
+       (notes . "Production-ready parser with pest PEG grammar, AST, phase separation, termination checking, resource analysis. CLI with 6 subcommands. Missing: tests, DOT export for call graphs."))
 
-    (deployment
-      (status . "complete")
-      (progress . 85)
-      (components
-        (nix-flake . "complete")
-        (podman-compose . "complete")
-        (arangodb-schema . "complete")
-        (dockerfiles . "partial")))
+      ((name . "elixir-coordinator")
+       (status . complete)
+       (percent . 90)
+       (loc . 1009)
+       (notes . "OTP supervision tree, ArangoDB pooling, work unit generation, Byzantine fault-tolerant validation (2/3 quorum), proof tracking. Missing: integration tests."))
 
-    (phoenix-dashboard
-      (status . "not-started")
-      (progress . 0)
-      (priority . "high"))
+      ((name . "lean-proofs")
+       (status . in-progress)
+       (percent . 25)
+       (loc . 169)
+       (notes . "Syntax and semantics formalized. Properties 1-3 scaffolded with sorry placeholders. Properties 4-7 not implemented."))
 
-    (nickel-config
-      (status . "not-started")
-      (progress . 0)
-      (priority . "medium"))
+      ((name . "deployment-infra")
+       (status . complete)
+       (percent . 100)
+       (notes . "Nix flake, Docker/Podman compose, ArangoDB schema, Prometheus/Grafana monitoring all configured."))
 
-    (ada-validator
-      (status . "not-started")
-      (progress . 0)
-      (priority . "medium"))
+      ((name . "documentation")
+       (status . complete)
+       (percent . 100)
+       (loc . 50000)
+       (notes . "Comprehensive: CLAUDE.md, HANDOVER, orchestration docs, task docs, governance, RSR compliance."))
 
-    (tests
-      (status . "not-started")
-      (progress . 0)
-      (coverage . 0)
-      (priority . "critical"))))
+      ((name . "ci-cd")
+       (status . complete)
+       (percent . 100)
+       (notes . "GitHub Actions (CodeQL, Elixir, Pages, Dependabot, SLSA), GitLab CI multi-stage pipeline."))
 
-;;;============================================================================
-;;; ROUTE TO MVP v1
-;;;============================================================================
-(mvp-route
-  (target-completion . 85)  ; percent needed for MVP
-  (definition . "Functional end-to-end verification system with at least Property 1 proven")
+      ((name . "governance")
+       (status . complete)
+       (percent . 100)
+       (notes . "TPCF framework, CODE_OF_CONDUCT, CONTRIBUTING, MAINTAINERS (seeking), SECURITY, dual licensing."))
 
-  (milestone-1
-    (name . "Testing Foundation")
-    (priority . 1)
-    (tasks
-      ("Write unit tests for Rust parser"
-       (project . "rust-parser")
-       (estimate . "needs-doing"))
-      ("Write unit tests for Elixir coordinator"
-       (project . "elixir-coordinator")
-       (estimate . "needs-doing"))
-      ("Integration tests for work flow"
-       (project . "tests")
-       (estimate . "needs-doing"))))
+      ((name . "testing")
+       (status . blocked)
+       (percent . 0)
+       (blocker . "No tests written yet; infrastructure ready"))
 
-  (milestone-2
-    (name . "Property 1 Proof Complete")
-    (priority . 2)
-    (tasks
-      ("Fill in sorry placeholders for Phase Separation"
-       (project . "lean-proofs")
-       (file . "Oblibeny/Properties/PhaseSeparation.lean"))
-      ("Add supporting lemmas"
-       (project . "lean-proofs"))
-      ("Verify proof compiles without sorry"
-       (project . "lean-proofs"))))
+      ((name . "phoenix-dashboard")
+       (status . not-started)
+       (percent . 0)
+       (notes . "LiveView UI for monitoring not implemented"))
 
-  (milestone-3
-    (name . "Phoenix Dashboard MVP")
-    (priority . 3)
-    (tasks
-      ("Create Phoenix project structure"
-       (project . "phoenix-dashboard"))
-      ("Implement overview LiveView"
-       (project . "phoenix-dashboard"))
-      ("Add property progress visualization"
-       (project . "phoenix-dashboard"))
-      ("Connect to coordinator via ArangoDB"
-       (project . "phoenix-dashboard"))))
+      ((name . "nickel-config")
+       (status . not-started)
+       (percent . 0)
+       (notes . "Type-safe configuration layer not implemented"))
 
-  (milestone-4
-    (name . "End-to-End Integration")
-    (priority . 4)
-    (tasks
-      ("Verify docker-compose brings up all services"
-       (project . "deployment"))
-      ("Test work unit generation to DB"
-       (project . "integration"))
-      ("Test result validation flow"
-       (project . "integration")))))
+      ((name . "ada-validator")
+       (status . not-started)
+       (percent . 0)
+       (notes . "Safety-critical validator component not implemented"))))
 
-;;;============================================================================
-;;; KNOWN ISSUES & BLOCKERS
-;;;============================================================================
-(issues
-  (critical
-    (issue-1
+    ;;; ============================================================
+    ;;; ROUTE TO MVP v1
+    ;;; ============================================================
+
+    (mvp-v1-roadmap
+     (target-version . "1.0.0")
+     (definition . "End-to-end distributed verification of Oblibeny properties with volunteer computing")
+
+     (milestones
+      ((id . 1)
+       (name . "testing-foundation")
+       (status . pending)
+       (priority . critical)
+       (description . "Achieve >80% test coverage across Rust and Elixir components")
+       (tasks
+        ("Write unit tests for rust-parser (parser, AST, analyzers)"
+         "Write integration tests for elixir-coordinator"
+         "Add property-based tests with PropEr/QuickCheck"
+         "Configure coverage reporting in CI")))
+
+      ((id . 2)
+       (name . "lean-proofs-complete")
+       (status . pending)
+       (priority . high)
+       (description . "Complete formal proofs for all 7 Oblibeny properties")
+       (tasks
+        ("Remove sorry placeholders from properties 1-3"
+         "Implement Property 4: Capability System Soundness"
+         "Implement Property 5: Obfuscation Semantic Preservation"
+         "Implement Property 6: Call Graph Acyclicity"
+         "Implement Property 7: Memory Safety"
+         "Build proof automation tactics")))
+
+      ((id . 3)
+       (name . "boinc-integration")
+       (status . pending)
+       (priority . high)
+       (description . "Wire up actual BOINC server for work distribution")
+       (tasks
+        ("Configure BOINC server components (feeder, transitioner, validator)"
+         "Create BOINC application wrapper for verification tasks"
+         "Test work unit flow end-to-end"
+         "Deploy test BOINC project locally")))
+
+      ((id . 4)
+       (name . "monitoring-dashboard")
+       (status . pending)
+       (priority . medium)
+       (description . "Phoenix LiveView dashboard for real-time monitoring")
+       (tasks
+        ("Scaffold Phoenix project with LiveView"
+         "Real-time work unit status display"
+         "Proof progress visualization"
+         "Volunteer statistics and leaderboard")))
+
+      ((id . 5)
+       (name . "production-hardening")
+       (status . pending)
+       (priority . medium)
+       (description . "Security and performance for production deployment")
+       (tasks
+        ("Security audit of all components"
+         "Performance benchmarking"
+         "Load testing with simulated volunteers"
+         "Documentation for operators")))))
+
+    ;;; ============================================================
+    ;;; KNOWN ISSUES
+    ;;; ============================================================
+
+    (issues
+     ((id . "ISS-001")
+      (severity . critical)
+      (category . testing)
       (title . "Zero test coverage")
-      (description . "Infrastructure exists but no tests written")
-      (impact . "Cannot validate correctness")
-      (blocker-for . ("deployment" "production"))
-      (action . "Write comprehensive test suites"))
+      (description . "No unit, integration, or property tests exist. Test infrastructure is ready but no tests written.")
+      (affected . ("rust-parser" "elixir-coordinator" "lean-proofs"))
+      (resolution . "Write comprehensive test suites"))
 
-    (issue-2
+     ((id . "ISS-002")
+      (severity . high)
+      (category . proofs)
       (title . "Lean proofs incomplete")
-      (description . "All proofs have sorry placeholders")
-      (impact . "No formal verification achieved")
-      (blocker-for . ("scientific-validity"))
-      (action . "Complete at minimum Property 1 proof")))
+      (description . "Properties 1-3 use sorry placeholders. Properties 4-7 not implemented at all.")
+      (affected . ("lean-proofs"))
+      (resolution . "Complete formal proofs with Lean 4 tactics"))
 
-  (high
-    (issue-3
-      (title . "No Phoenix dashboard")
-      (description . "Users cannot monitor verification progress")
-      (impact . "Poor user experience, reduced engagement")
-      (action . "Build Phoenix LiveView dashboard"))
+     ((id . "ISS-003")
+      (severity . medium)
+      (category . integration)
+      (title . "BOINC server not wired")
+      (description . "Elixir coordinator generates work units but actual BOINC server integration not complete.")
+      (affected . ("boinc-integration"))
+      (resolution . "Configure BOINC server components and test distribution"))
 
-    (issue-4
-      (title . "Parser lacks type-checking")
-      (description . "Only validates syntax, not types")
-      (impact . "Type errors not caught")
-      (action . "Implement bidirectional type checker")))
+     ((id . "ISS-004")
+      (severity . low)
+      (category . tooling)
+      (title . "Call graph DOT export missing")
+      (description . "CLI has TODO comment for DOT format generation in call-graph subcommand.")
+      (affected . ("rust-parser/src/bin/oblibeny-cli.rs"))
+      (resolution . "Implement GraphViz DOT output"))
 
-  (medium
-    (issue-5
-      (title . "No actual BOINC integration")
-      (description . "Coordinator doesn't communicate with BOINC yet")
-      (impact . "Cannot distribute work to volunteers")
-      (action . "Implement BOINC work generator/validator"))
+     ((id . "ISS-005")
+      (severity . medium)
+      (category . documentation)
+      (title . "RSR compliance score inconsistency")
+      (description . "README.md shows Bronze 81%, README.adoc claims Gold 100%. Likely due to testing gap.")
+      (affected . ("README.md" "README.adoc" "RSR_COMPLIANCE.md"))
+      (resolution . "Update after tests implemented to reflect true score"))
 
-    (issue-6
-      (title . "Work generation template-based")
-      (description . "Programs generated from templates, not grammar")
-      (impact . "Limited program diversity")
-      (action . "Implement grammar-driven generation"))
+     ((id . "ISS-006")
+      (severity . low)
+      (category . governance)
+      (title . "No active maintainers")
+      (description . "MAINTAINERS.md lists all positions as open/seeking. Project needs human maintainers.")
+      (affected . ("MAINTAINERS.md"))
+      (resolution . "Recruit community maintainers")))
 
-    (issue-7
-      (title . "Hard-coded configuration values")
-      (description . "Many values should be configurable")
-      (impact . "Deployment inflexibility")
-      (action . "Implement Nickel configs")))
+    ;;; ============================================================
+    ;;; QUESTIONS FOR USER
+    ;;; ============================================================
 
-  (low
-    (issue-8
-      (title . "Some unwrap() calls in Rust")
-      (description . "Should be proper Result handling")
-      (impact . "Potential panics")
-      (action . "Convert to Result types"))))
+    (questions
+     ((id . "Q-001")
+      (priority . high)
+      (topic . "MVP scope")
+      (question . "Should MVP v1 require all 7 Lean proofs complete, or is properties 1-3 sufficient for initial release?"))
 
-;;;============================================================================
-;;; QUESTIONS FOR USER
-;;;============================================================================
-(questions
-  (q1
-    (topic . "MVP Priorities")
-    (question . "Should Phoenix dashboard or completing Lean proofs be higher priority for MVP?")
-    (context . "Dashboard provides user visibility; proofs provide scientific validity")
-    (impact . "Determines next sprint focus"))
+     ((id . "Q-002")
+      (priority . high)
+      (topic . "deployment")
+      (question . "Do you have a target VPS/cloud provider for the BOINC server deployment? This affects infrastructure decisions."))
 
-  (q2
-    (topic . "BOINC Integration Approach")
-    (question . "Should we target official BOINC integration or build a standalone verification cluster first?")
-    (context . "BOINC requires more infrastructure but provides volunteer network")
-    (impact . "Determines deployment architecture"))
+     ((id . "Q-003")
+      (priority . medium)
+      (topic . "volunteers")
+      (question . "Is there an existing volunteer community to target, or will this need grassroots recruitment?"))
 
-  (q3
-    (topic . "Test Framework Selection")
-    (question . "Preferred test frameworks? (Rust: built-in/proptest, Elixir: ExUnit/StreamData)")
-    (context . "Need property-based testing for language verification")
-    (impact . "Test infrastructure decisions"))
+     ((id . "Q-004")
+      (priority . medium)
+      (topic . "testing-strategy")
+      (question . "For the Rust parser tests, should we prioritize unit tests, integration tests, or fuzzing with arbitrary input?"))
 
-  (q4
-    (topic . "CI/CD Platform")
-    (question . "Preferred CI/CD? GitHub Actions (currently no workflows), GitLab CI (has .gitlab-ci.yml)?")
-    (context . "Repository has GitLab CI file but appears to be on GitHub")
-    (impact . "Automation infrastructure"))
+     ((id . "Q-005")
+      (priority . medium)
+      (topic . "ada-validator")
+      (question . "Is the Ada validator component still in scope for MVP, or can it be deferred to v1.1?"))
 
-  (q5
-    (topic . "Proof Strategy")
-    (question . "For Property 5 (semantic preservation), preference between translation validation vs bisimulation?")
-    (context . "Both approaches valid; bisimulation more rigorous but harder")
-    (impact . "Proof development approach")))
+     ((id . "Q-006")
+      (priority . low)
+      (topic . "nickel-config")
+      (question . "Current config uses Elixir config files. Is Nickel type-safe config a priority, or is current approach sufficient?"))
 
-;;;============================================================================
-;;; LONG-TERM ROADMAP
-;;;============================================================================
-(roadmap
-  (phase-1
-    (name . "Foundation Complete")
-    (status . "current")
-    (goals
-      "Core infrastructure operational"
-      "Parser production-ready"
-      "Coordinator production-ready"
-      "Deployment configs working")
-    (progress . 85))
+     ((id . "Q-007")
+      (priority . low)
+      (topic . "branding")
+      (question . "Is 'Oblibeny BOINC Platform' the final project name, or is this a working title?"))
 
-  (phase-2
-    (name . "Verification MVP")
-    (status . "next")
-    (goals
-      "Test coverage > 80%"
-      "At least Property 1 proven in Lean"
-      "Phoenix dashboard basic functionality"
-      "End-to-end work flow validated")
-    (progress . 20))
+     ((id . "Q-008")
+      (priority . high)
+      (topic . "oblibeny-language")
+      (question . "Where is the Oblibeny language itself being developed? Is there a separate repository, or is this the canonical implementation?")))
 
-  (phase-3
-    (name . "BOINC Integration")
-    (status . "planned")
-    (goals
-      "Real BOINC server running"
-      "Ada validator implemented"
-      "Volunteer client packaging"
-      "Credit/badging system")
-    (progress . 0))
+    ;;; ============================================================
+    ;;; LONG-TERM ROADMAP
+    ;;; ============================================================
 
-  (phase-4
-    (name . "Public Beta")
-    (status . "planned")
-    (goals
-      "Deploy to production VPS"
-      "Public project URL"
-      "Documentation complete"
-      "First 100 volunteers")
-    (progress . 0))
+    (long-term-roadmap
+     (vision . "Crowdsourced formal verification infrastructure for Turing-incomplete deploy-time code, enabling provably safe distributed computing.")
 
-  (phase-5
-    (name . "Full Verification")
-    (status . "planned")
-    (goals
-      "All 7 properties proven"
-      "10M+ test cases processed"
-      "Scientific publication"
-      "Language specification frozen")
-    (progress . 0)))
+     (phases
+      ((phase . 1)
+       (name . "Foundation")
+       (version . "1.0")
+       (status . in-progress)
+       (objectives
+        ("Complete test coverage"
+         "Finish formal proofs for all 7 properties"
+         "First BOINC deployment with real volunteers"
+         "Basic monitoring dashboard")))
 
-;;;============================================================================
-;;; TECHNICAL DEBT
-;;;============================================================================
-(technical-debt
-  (debt-1
-    (area . "Error Handling")
-    (description . "Rust code uses unwrap() in some places")
-    (severity . "low")
-    (remedy . "Convert to Result<T, E> with thiserror"))
+      ((phase . 2)
+       (name . "Scale")
+       (version . "1.x")
+       (status . planned)
+       (objectives
+        ("Multi-project BOINC support"
+         "Proof caching and incremental verification"
+         "Mobile volunteer clients (Android)"
+         "Academic partnerships for compute resources")))
 
-  (debt-2
-    (area . "Configuration")
-    (description . "Hard-coded values throughout")
-    (severity . "medium")
-    (remedy . "Implement Nickel configuration layer"))
+      ((phase . 3)
+       (name . "Ecosystem")
+       (version . "2.0")
+       (status . planned)
+       (objectives
+        ("Oblibeny standard library verification"
+         "Third-party library certification program"
+         "IDE integration (LSP for Oblibeny)"
+         "Verification-as-a-Service API")))
 
-  (debt-3
-    (area . "Logging")
-    (description . "Inconsistent log levels across components")
-    (severity . "low")
-    (remedy . "Standardize on structured JSON logging"))
+      ((phase . 4)
+       (name . "Autonomy")
+       (version . "3.0")
+       (status . conceptual)
+       (objectives
+        ("Self-hosting: verify BOINC components with BOINC"
+         "Decentralized proof storage (IPFS integration)"
+         "Incentive mechanisms for volunteer retention"
+         "Federated verification network")))))
 
-  (debt-4
-    (area . "Documentation")
-    (description . "Code comments sparse in places")
-    (severity . "low")
-    (remedy . "Add rustdoc/ExDoc comments")))
+    ;;; ============================================================
+    ;;; CRITICAL NEXT ACTIONS
+    ;;; ============================================================
 
-;;;============================================================================
-;;; KEY DECISIONS MADE
-;;;============================================================================
-(decisions
-  (decision-1
-    (topic . "Self-hosted BOINC")
-    (choice . "Own server vs joining existing project")
-    (rationale . "Full control, no bureaucracy")
-    (date . "2024-11"))
+    (critical-next-actions
+     ((priority . 1)
+      (action . "Write Rust parser unit tests")
+      (rationale . "Unblocks CI quality gates and builds confidence in core parsing"))
 
-  (decision-2
-    (topic . "Ada for Validator")
-    (choice . "Ada vs Rust for safety-critical validation")
-    (rationale . "Unmatched reliability for critical code")
-    (date . "2024-11"))
+     ((priority . 2)
+      (action . "Write Elixir coordinator integration tests")
+      (rationale . "Validates OTP supervision and database interactions"))
 
-  (decision-3
-    (topic . "Lean 4 over Coq")
-    (choice . "Lean 4 vs Coq for formal proofs")
-    (rationale . "Modern tooling, better ergonomics, active community")
-    (date . "2024-11"))
+     ((priority . 3)
+      (action . "Complete Lean Property 1: Phase Separation Soundness")
+      (rationale . "Most fundamental property; proves compile/deploy phase isolation"))
 
-  (decision-4
-    (topic . "ArangoDB over Neo4j+Postgres")
-    (choice . "Single multi-model DB")
-    (rationale . "Both document and graph in one system")
-    (date . "2024-11"))
+     ((priority . 4)
+      (action . "Test docker-compose deployment locally")
+      (rationale . "Validates end-to-end stack before BOINC integration"))
 
-  (decision-5
-    (topic . "Nix over Docker")
-    (choice . "Nix for reproducibility")
-    (rationale . "True hermetic builds, essential for security")
-    (date . "2024-11")))
+     ((priority . 5)
+      (action . "Recruit initial maintainers")
+      (rationale . "Human oversight needed for governance and code review")))
 
-;;;============================================================================
-;;; CRITICAL NEXT ACTIONS
-;;;============================================================================
-(next-actions
-  (action-1
-    (description . "Run cargo build in rust-parser to generate Cargo.lock")
-    (project . "rust-parser")
-    (priority . "immediate")
-    (command . "cd rust-parser && cargo build"))
+    ;;; ============================================================
+    ;;; HISTORY (for velocity tracking)
+    ;;; ============================================================
 
-  (action-2
-    (description . "Run mix deps.get in elixir-coordinator")
-    (project . "elixir-coordinator")
-    (priority . "immediate")
-    (command . "cd elixir-coordinator && mix deps.get"))
+    (history
+     ((date . "2024-12-08")
+      (percent . 65)
+      (notes . "Initial STATE.scm creation; infrastructure complete, tests/proofs pending")))))
 
-  (action-3
-    (description . "Run lake build in lean-proofs")
-    (project . "lean-proofs")
-    (priority . "immediate")
-    (command . "cd lean-proofs && lake build"))
+;;; Query helpers (minikanren-style)
+(define (get-current-focus state)
+  (assoc-ref (assoc-ref state 'session-context) 'focus))
 
-  (action-4
-    (description . "Write first parser tests")
-    (project . "rust-parser")
-    (priority . "high")
-    (file . "rust-parser/tests/parser_tests.rs"))
+(define (get-blocked-components state)
+  (filter (lambda (c) (eq? (assoc-ref c 'status) 'blocked))
+          (assoc-ref (assoc-ref state 'current-position) 'components)))
 
-  (action-5
-    (description . "Complete Phase Separation proof (remove sorry)")
-    (project . "lean-proofs")
-    (priority . "high")
-    (file . "lean-proofs/Oblibeny/Properties/PhaseSeparation.lean"))
+(define (get-critical-issues state)
+  (filter (lambda (i) (eq? (assoc-ref i 'severity) 'critical))
+          (assoc-ref state 'issues)))
 
-  (action-6
-    (description . "Create Phoenix project for dashboard")
-    (project . "phoenix-dashboard")
-    (priority . "medium")
-    (command . "mix phx.new phoenix_dashboard --live"))
+(define (get-high-priority-questions state)
+  (filter (lambda (q) (eq? (assoc-ref q 'priority) 'high))
+          (assoc-ref state 'questions)))
 
-  (action-7
-    (description . "Test docker-compose deployment")
-    (project . "deployment")
-    (priority . "medium")
-    (command . "cd deployment/podman && podman-compose up -d")))
-
-;;;============================================================================
-;;; SUCCESS METRICS
-;;;============================================================================
-(success-metrics
-  (metric-1
-    (name . "Test Coverage")
-    (target . 80)
-    (current . 0)
-    (unit . "percent"))
-
-  (metric-2
-    (name . "Properties Proven")
-    (target . 7)
-    (current . 0)
-    (unit . "count"))
-
-  (metric-3
-    (name . "Parser Performance")
-    (target . 100)
-    (current . "untested")
-    (unit . "ms for 1000-line program"))
-
-  (metric-4
-    (name . "Work Generation Rate")
-    (target . 1000)
-    (current . "untested")
-    (unit . "units/second"))
-
-  (metric-5
-    (name . "Active Volunteers")
-    (target . 100)
-    (current . 0)
-    (unit . "count")))
-
-;;;============================================================================
-;;; FILE INVENTORY
-;;;============================================================================
-(file-inventory
-  (total-files . 60)
-  (total-loc . 5000)
-
-  (by-language
-    (rust . 2000)
-    (elixir . 1500)
-    (lean . 800)
-    (nix . 200)
-    (javascript . 100)
-    (yaml . 200)
-    (markdown . 5000))
-
-  (key-files
-    ("00_MASTER_ORCHESTRATION.md" . "Architecture overview")
-    ("01_COMMON_CONTEXT.md" . "Technical specifications")
-    ("HANDOVER_TO_NEW_CLAUDE.md" . "Session handover document")
-    ("rust-parser/src/parser/grammar.pest" . "PEG grammar definition")
-    ("rust-parser/src/bin/oblibeny-cli.rs" . "CLI entry point")
-    ("elixir-coordinator/lib/coordinator/application.ex" . "OTP supervisor")
-    ("lean-proofs/Oblibeny/Syntax.lean" . "Formalized syntax")
-    ("deployment/podman/docker-compose.yml" . "Container orchestration")
-    ("flake.nix" . "Nix build configuration")))
-
-;;;============================================================================
-;;; SESSION NOTES
-;;;============================================================================
-(session-notes
-  (note-1
-    (date . "2024-11")
-    (summary . "Initial autonomous development session")
-    (tokens-used . 90000)
-    (outcome . "Built 60-70% of MVP infrastructure"))
-
-  (note-2
-    (date . "2025-12-08")
-    (summary . "STATE.scm created for context persistence")
-    (outcome . "Project state documented in portable format")))
-
-;;; End of STATE.scm
+;;; End STATE.scm
