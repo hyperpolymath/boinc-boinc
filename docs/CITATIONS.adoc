@@ -1,0 +1,36 @@
+= boinc-boinc - Citation Guide
+:toc:
+
+== BibTeX
+
+[source,bibtex]
+----
+@software{boinc-boinc_2025,
+  author = {Polymath, Hyper},
+  title = {boinc-boinc},
+  year = {2025},
+  url = {https://github.com/hyperpolymath/boinc-boinc},
+  license = {AGPL-3.0-or-later}
+}
+----
+
+== Harvard Style
+
+Polymath, H. (2025) _boinc-boinc_ [Computer software]. Available at: https://github.com/hyperpolymath/boinc-boinc
+
+== OSCOLA
+
+Hyper Polymath, 'boinc-boinc' (2025) <https://github.com/hyperpolymath/boinc-boinc>
+
+== MLA
+
+Polymath, Hyper. "boinc-boinc." 2025, github.com/hyperpolymath/boinc-boinc.
+
+== APA 7
+
+Polymath, H. (2025). _boinc-boinc_ [Computer software]. GitHub. https://github.com/hyperpolymath/boinc-boinc
+
+== See Also
+
+* link:../CITATION.cff[CITATION.cff]
+* link:../codemeta.json[codemeta.json]

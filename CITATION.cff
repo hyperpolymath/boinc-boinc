@@ -1,0 +1,23 @@
+# CITATION.cff - Citation File Format for boinc-boinc
+# https://citation-file-format.github.io/
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Palimpsest-0.5
+
+cff-version: 1.2.0
+title: "boinc-boinc"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "Polymath"
+    given-names: "Hyper"
+    email: "hyperpolymath@proton.me"
+    affiliation: "Rhodium Standard / Independent Researcher"
+repository-code: "https://github.com/hyperpolymath/boinc-boinc"
+url: "https://rhodium.sh/projects/boinc-boinc"
+abstract: "Infrastructure MVP complete; testing and proofs incomplete"
+keywords:
+  - RSR
+  - rhodium-standard
+license: "AGPL-3.0-or-later"
+license-url: "https://github.com/hyperpolymath/boinc-boinc/blob/main/LICENSE.txt"
+version: "0.1.0"
+date-released: "2025-12-10"
