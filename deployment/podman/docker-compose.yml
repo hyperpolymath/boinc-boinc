@@ -24,7 +24,7 @@ services:
     depends_on:
       - arangodb
     environment:
-      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_URL=https://arangodb:8529
       - ARANGO_DB=oblibeny_boinc
       - ARANGO_USER=root
       - ARANGO_PASSWORD=${ARANGO_PASSWORD:-oblibeny_secure_password}

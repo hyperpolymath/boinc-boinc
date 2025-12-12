@@ -33,7 +33,7 @@ test:elixir:
   services:
     - arangodb:latest
   variables:
-    ARANGO_URL: "http://arangodb:8529"
+    ARANGO_URL: "https://arangodb:8529"
     ARANGO_DB: "oblibeny_test"
     ARANGO_USER: "root"
     ARANGO_PASSWORD: "test"
