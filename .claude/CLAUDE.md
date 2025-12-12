@@ -29,3 +29,19 @@ See TS_CONVERSION_NEEDED.md for full migration guide.
 This file is an ArangoDB Foxx initialization script. It runs inside ArangoDB's
 embedded JavaScript engine, not in browser or Node.js. Converting to ReScript
 is not applicable for this database deployment artifact.
+
+## Container Policy (RSR)
+
+### Primary Stack
+- **Runtime**: nerdctl (not docker)
+- **Base Image**: wolfi (cgr.dev/chainguard/wolfi-base)
+- **Distroless**: Use distroless variants where possible
+
+### Fallback Stack
+- **Runtime**: podman (if nerdctl unavailable)
+- **Base Image**: alpine (if wolfi unavailable)
+
+### DO NOT:
+- Use `docker` command (use `nerdctl` or `podman`)
+- Use Dockerfile (use Containerfile)
+- Use debian/ubuntu base images (use wolfi/alpine)

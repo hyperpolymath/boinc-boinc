@@ -1,7 +1,7 @@
 FROM elixir:1.15-alpine AS builder
 
 # Install build dependencies
-RUN apk add --no-cache build-base git
+RUN apk add --no-cache --no-cache build-base git
 
 # Prepare build directory
 WORKDIR /app
@@ -26,9 +26,9 @@ RUN MIX_ENV=prod mix compile
 RUN MIX_ENV=prod mix release
 
 # Runtime stage
-FROM alpine:3.18
+FROM cgr.dev/chainguard/wolfi-base:3.18
 
-RUN apk add --no-cache \
+RUN apk add --no-cache --no-cache \
     openssl \
     ncurses-libs \
     libstdc++
