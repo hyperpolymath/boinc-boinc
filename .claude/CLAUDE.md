@@ -23,3 +23,9 @@ This repository needs FULL conversion from TS/JS to ReScript.
 - Use tsc or TypeScript compiler
 
 See TS_CONVERSION_NEEDED.md for full migration guide.
+
+## Exception: deployment/arangodb/init-db.js
+
+This file is an ArangoDB Foxx initialization script. It runs inside ArangoDB's
+embedded JavaScript engine, not in browser or Node.js. Converting to ReScript
+is not applicable for this database deployment artifact.
