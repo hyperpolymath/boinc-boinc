@@ -1,192 +1,54 @@
-# Git Attributes for Oblibeny BOINC Platform
-# https://git-scm.com/docs/gitattributes
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# RSR-compliant .gitattributes
 
-# Auto-detect text files and normalize line endings to LF
 * text=auto eol=lf
 
-# Explicitly declare text files
-*.md text
-*.adoc text
-*.txt text
-*.rst text
+# Source
+*.rs    text eol=lf diff=rust
+*.ex    text eol=lf diff=elixir
+*.exs   text eol=lf diff=elixir
+*.jl    text eol=lf
+*.res   text eol=lf
+*.resi  text eol=lf
+*.ada   text eol=lf diff=ada
+*.adb   text eol=lf diff=ada
+*.ads   text eol=lf diff=ada
+*.hs    text eol=lf
+*.chpl  text eol=lf
+*.scm   text eol=lf
+*.ncl   text eol=lf
+*.nix   text eol=lf
 
-# Source code
-*.rs text diff=rust
-*.ex text diff=elixir
-*.exs text diff=elixir
-*.eex text
-*.leex text
-*.heex text
-*.lean text
-*.ada text
-*.adb text
-*.ads text
-*.gpr text
-*.ncl text
-*.nix text
-*.sh text
-*.bash text
-*.fish text
-*.zsh text
+# Docs
+*.md    text eol=lf diff=markdown
+*.adoc  text eol=lf
+*.txt   text eol=lf
 
-# Configuration
-*.yml text
-*.yaml text
-*.toml text
-*.json text
-*.xml text
-*.ini text
-*.conf text
-*.config text
+# Data
+*.json  text eol=lf
+*.yaml  text eol=lf
+*.yml   text eol=lf
+*.toml  text eol=lf
 
-# Web files
-*.html text
-*.css text
-*.scss text
-*.sass text
-*.less text
-*.js text
-*.jsx text
-*.ts text
-*.tsx text
-*.vue text
-*.svelte text
+# Config
+.gitignore     text eol=lf
+.gitattributes text eol=lf
+justfile       text eol=lf
+Makefile       text eol=lf
+Containerfile  text eol=lf
 
-# SQL
-*.sql text
+# Scripts
+*.sh   text eol=lf
 
-# Documentation
-*.tex text
-*.bib text
-
-# Scripts (must be executable)
-*.sh text eol=lf
-configure text eol=lf
-justfile text
-Makefile text
-
-# Binary files (no normalization)
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.ico binary
-*.svg binary
-*.webp binary
-*.avif binary
-
-# Documents
-*.pdf binary
-*.doc binary
-*.docx binary
-*.xls binary
-*.xlsx binary
-*.ppt binary
-*.pptx binary
-
-# Archives
-*.zip binary
-*.tar binary
-*.gz binary
-*.bz2 binary
-*.xz binary
-*.7z binary
-*.rar binary
-
-# Fonts
-*.woff binary
+# Binary
+*.png   binary
+*.jpg   binary
+*.gif   binary
+*.pdf   binary
 *.woff2 binary
-*.ttf binary
-*.otf binary
-*.eot binary
+*.zip   binary
+*.gz    binary
 
-# Audio/Video
-*.mp3 binary
-*.mp4 binary
-*.wav binary
-*.ogg binary
-*.webm binary
-
-# Compiled binaries
-*.exe binary
-*.dll binary
-*.so binary
-*.dylib binary
-*.a binary
-*.o binary
-*.beam binary
-
-# Database
-*.db binary
-*.sqlite binary
-*.sqlite3 binary
-
-# Diff strategies
-*.lock linguist-generated=true
-**/package-lock.json linguist-generated=true
-**/Cargo.lock linguist-generated=false
-**/mix.lock linguist-generated=false
-**/flake.lock linguist-generated=false
-
-# Merge strategies
-Cargo.lock merge=binary
-mix.lock merge=binary
-flake.lock merge=binary
-CHANGELOG.md merge=union
-
-# Export-ignore (excluded from git archive)
-.gitignore export-ignore
-.gitattributes export-ignore
-.git* export-ignore
-.gitlab-ci.yml export-ignore
-.github/ export-ignore
-.editorconfig export-ignore
-.tool-versions export-ignore
-.envrc export-ignore
-.vscode/ export-ignore
-.idea/ export-ignore
-*.sublime-* export-ignore
-.DS_Store export-ignore
-
-# Documentation export-ignore
-docs/adr/ export-ignore
-docs/dev/ export-ignore
-docs/internal/ export-ignore
-
-# Test files export-ignore
-tests/ export-ignore
-*_test.* export-ignore
-test_*.* export-ignore
-**/test/ export-ignore
-**/__tests__/ export-ignore
-
-# Development files export-ignore
-*.log export-ignore
-*.tmp export-ignore
-TODO.md export-ignore
-NOTES.md export-ignore
-scratch/ export-ignore
-tmp/ export-ignore
-
-# Linguist (GitHub language detection)
-docs/** linguist-documentation
-examples/** linguist-documentation
-*.md linguist-documentation
-*.adoc linguist-documentation
-
-# Generated files
-**/target/ linguist-generated=true
-**/_build/ linguist-generated=true
-**/deps/ linguist-generated=true
-**/.lake/ linguist-generated=true
-**/node_modules/ linguist-generated=true
-**/dist/ linguist-generated=true
-**/build/ linguist-generated=true
-
-# Large files (use Git LFS if needed)
-# Uncomment and configure as needed:
-# *.psd filter=lfs diff=lfs merge=lfs -text
-# *.ai filter=lfs diff=lfs merge=lfs -text
-# *.sketch filter=lfs diff=lfs merge=lfs -text
-
-# SPDX-License-Identifier: CC0-1.0
+# Lock files
+Cargo.lock  text eol=lf -diff
+flake.lock  text eol=lf -diff
