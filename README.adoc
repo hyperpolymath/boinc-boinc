@@ -1,4 +1,8 @@
 = Oblibeny BOINC Platform
+
+image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
+image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
+
 :toc: left
 :toclevels: 3
 :icons: font
@@ -8,7 +12,6 @@
 :experimental:
 :rsr-level: Bronze
 :rsr-badge: https://img.shields.io/badge/RSR-Bronze-cd7f32
-:license-badge: https://img.shields.io/badge/license-MIT%20%2B%20Palimpsest--0.8-blue
 :tpcf-badge: https://img.shields.io/badge/TPCF-Perimeter%203-green
 :security-badge: https://img.shields.io/badge/security-RFC%209116-success
 
