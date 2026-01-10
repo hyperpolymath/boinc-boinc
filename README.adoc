@@ -336,7 +336,7 @@ We follow the *Tri-Perimeter Contribution Framework (TPCF)*:
 
 This project is *dual-licensed*:
 
-* link:LICENSE.txt[*MIT License*] - Permissive, allows commercial use
+* link:LICENSE.txt[*Palimpsest-MPL-1.0 License*] - Permissive, allows commercial use
 * link:LICENSE.txt[*Palimpsest License v0.8*] - Adds ethical constraints
 
 *SPDX-License-Identifier*: `MIT AND Palimpsest-0.8`
@@ -345,7 +345,7 @@ This project is *dual-licensed*:
 ====
 You may choose to use this software under:
 
-* *MIT License* for permissive use
+* *Palimpsest-MPL-1.0 License* for permissive use
 * *GPL-3.0-or-later* for copyleft projects (compatible option)
 * *MIT + Palimpsest-0.8* for politically autonomous software (*philosophically encouraged*)
 
