@@ -1,6 +1,9 @@
 = Oblibeny BOINC Platform
+image:https://img.shields.io/badge/license-PMPL--1.0-blue.svg[License,link="https://github.com/hyperpolymath/palimpsest-license"]
 
-image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
+
+
+
 image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-licence"]
 
 :toc: left
@@ -16,7 +19,7 @@ image:https://img.shields.io/badge/Philosophy-Palimpsest-purple.svg[Palimpsest,l
 :security-badge: https://img.shields.io/badge/security-RFC%209116-success
 
 image:{rsr-badge}[RSR Level,link=RSR_COMPLIANCE.adoc]
-image:{license-badge}[License,link=LICENSE.txt]
+image:{license-PMPL--1.0}[License,link=LICENSE.txt]
 image:{tpcf-badge}[TPCF,link=CONTRIBUTING.adoc#tpcf]
 image:{security-badge}[Security,link=.well-known/security.txt]
 
@@ -336,18 +339,18 @@ We follow the *Tri-Perimeter Contribution Framework (TPCF)*:
 
 This project is *dual-licensed*:
 
-* link:LICENSE.txt[*MIT License*] - Permissive, allows commercial use
+* link:LICENSE.txt[*Palimpsest-MPL License v1.0 (PMPL-1.0)*] - Permissive, allows commercial use
 * link:LICENSE.txt[*Palimpsest License v0.8*] - Adds ethical constraints
 
-*SPDX-License-Identifier*: `MIT AND Palimpsest-0.8`
+*SPDX-License-Identifier*: `PMPL-1.0 AND Palimpsest-0.8`
 
 [NOTE]
 ====
 You may choose to use this software under:
 
-* *MIT License* for permissive use
-* *GPL-3.0-or-later* for copyleft projects (compatible option)
-* *MIT + Palimpsest-0.8* for politically autonomous software (*philosophically encouraged*)
+* *Palimpsest-MPL License v1.0 (PMPL-1.0)* for permissive use
+* *PMPL-1.0-or-later* for copyleft projects (compatible option)
+* *PMPL-1.0 + Palimpsest-0.8* for politically autonomous software (*philosophically encouraged*)
 
 The Palimpsest License adds principles of reversibility, attribution, emotional safety, distributed trust, offline-first design, and political autonomy.
 ====
@@ -365,7 +368,7 @@ If you use Oblibeny in research, please cite:
   author={Oblibeny Project Contributors},
   year={2024},
   url={https://github.com/oblibeny/boinc},
-  license={MIT AND Palimpsest-0.8}
+license = "PMPL-1.0"
 }
 ----
 
