@@ -417,3 +417,8 @@ For AI assistants: See link:CLAUDE.md[CLAUDE.md] for comprehensive development g
 
 [.small]
 For humans: See link:.well-known/humans.txt[.well-known/humans.txt] for credits and attribution.
+
+
+== Architecture
+
+See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.
