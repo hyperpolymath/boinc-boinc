@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 name: Well-Known Standards (RFC 9116 + RSR)
 on:
+npermissions: read-all
+
   push:
     branches: [main, master]
     paths:
@@ -12,13 +14,17 @@ on:
   schedule:
     # Weekly expiry check
     - cron: '0 9 * * 1'
+npermissions: read-all
+
   workflow_dispatch:
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+npermissions: read-all
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
       
       - name: RFC 9116 security.txt validation
         run: |

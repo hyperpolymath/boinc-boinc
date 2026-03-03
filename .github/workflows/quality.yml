@@ -1,12 +1,16 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
 name: Code Quality
 on: [push, pull_request]
+npermissions: read-all
+
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+npermissions: read-all
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
       
       - name: Check file permissions
         run: |
@@ -35,8 +39,10 @@ jobs:
 
   docs:
     runs-on: ubuntu-latest
+npermissions: read-all
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
       - name: Check documentation
         run: |
           MISSING=""
