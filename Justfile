@@ -344,3 +344,8 @@ sync-metadata:
     if [ -f .machine_readable/STATE.a2ml ]; then
         echo "✓ Metadata synchronized"
     fi
+
+# [AUTO-GENERATED] Multi-arch / RISC-V target
+build-riscv:
+	@echo "Building for RISC-V..."
+	cross build --target riscv64gc-unknown-linux-gnu
