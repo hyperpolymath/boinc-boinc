@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "8b665738-e5cb-57be-abf8-b8385eff1986"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "boinc-boinc"
+prefixed-name = "ix-boinc-boinc"
+
+[clade]
+primary = "ix"
+secondary = []
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/boinc-boinc"
+gitlab = "hyperpolymath/boinc-boinc"
+bitbucket = "hyperpolymath/boinc-boinc"
+
+[lineage]
+type = "standalone"
+parent = "BOINC distributed computing integration"
+born = "2026-03-16"
