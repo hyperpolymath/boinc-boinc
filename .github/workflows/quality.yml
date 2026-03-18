@@ -1,15 +1,18 @@
 # SPDX-License-Identifier: PMPL-1.0-or-later
-permissions: read-all
+permissions:
+  contents: read
 
 name: Code Quality
 on: [push, pull_request]
-npermissions: read-all
+npermissions:
+  contents: read
 
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-npermissions: read-all
+npermissions:
+  contents: read
 
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
@@ -41,7 +44,8 @@ npermissions: read-all
 
   docs:
     runs-on: ubuntu-latest
-npermissions: read-all
+npermissions:
+  contents: read
 
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
