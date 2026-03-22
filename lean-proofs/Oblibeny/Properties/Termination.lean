@@ -39,8 +39,15 @@ theorem boundedFor_terminates
   unfold terminates
   -- eval cfg 0 = some cfg for any cfg, so fuel = 0 always works
   -- For fuel > 0, eval returns none (stub), so we can only prove fuel = 0 case
-  sorry  -- GENUINE: stub eval semantics make this unprovable for fuel > 0;
-         -- requires real operational semantics implementation
+  sorry  -- GENUINELY BLOCKED: The `eval` function in Semantics.lean is a stub that
+         -- returns `some cfg` only at fuel=0 and `none` for all fuel>0. This theorem
+         -- requires fuel ≥ (n₂ - n₁).toNat, which is >0 whenever n₁ < n₂ (the
+         -- interesting case). With stub eval, `terminates e fuel` is false for fuel>0.
+         -- To resolve: implement real operational semantics in `eval` that actually
+         -- executes boundedFor by decrementing fuel per iteration. Once eval properly
+         -- reduces boundedFor loops, this proof becomes:
+         --   induction on (n₂ - n₁).toNat with fuel consumption per iteration,
+         --   showing eval reaches `some cfg` before fuel is exhausted.
 
 /-- Acyclic call graph implies termination -/
 theorem acyclicCallGraph_implies_termination (prog : Program) :
