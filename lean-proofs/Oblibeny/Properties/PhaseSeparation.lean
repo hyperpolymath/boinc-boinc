@@ -28,9 +28,18 @@ theorem phaseSeparation_preservedByBoundedFor
     allDeploySafe body →
     ¬(Expr.boundedFor x start end_ body).containsCompileOnly := by
   intro h_bounds h_body h_contains
-  -- Proof sketch: bounded-for is deploy-safe if its components are
   simp [Expr.containsCompileOnly] at h_contains
-  sorry -- Full proof would expand this
+  -- h_contains : start.containsCompileOnly = true ∨ end_.containsCompileOnly = true
+  --              ∨ body.any containsCompileOnly = true
+  -- h_bounds : allDeploySafe [start, end_] means neither start nor end_ containsCompileOnly
+  -- h_body : allDeploySafe body means no body element containsCompileOnly
+  unfold allDeploySafe at h_bounds h_body
+  simp [List.any] at h_bounds h_body
+  -- h_contains gives us a disjunction; each case contradicts the hypotheses
+  rcases h_contains with h_start | h_end | h_body_bad
+  · simp [h_start] at h_bounds
+  · simp [h_end] at h_bounds
+  · simp [h_body_bad] at h_body
 
 theorem phaseSeparation_validProgram (prog : Program) :
     (∀ def ∈ prog.defs, match def with
@@ -52,7 +61,13 @@ theorem phaseSeparation_validProgram (prog : Program) :
 theorem phaseSeparation_decidable (prog : Program) :
     Decidable (phaseSeparationSound prog) := by
   unfold phaseSeparationSound
-  -- In principle decidable by checking all definitions
-  sorry
+  -- phaseSeparationSound quantifies over list membership and uses
+  -- containsCompileOnly (which returns Bool), making it decidable
+  -- in principle. However, the nested pattern match on Expr constructors
+  -- and the universal quantifier over List.any make this require
+  -- decidable equality and instance resolution infrastructure.
+  -- We note that the property is checked by allDeploySafe (a Bool function),
+  -- so decidability follows from the boolean reflection.
+  sorry  -- GENUINE: requires DecidableEq Expr instance + List.any decidability wiring
 
 end Oblibeny.Properties
