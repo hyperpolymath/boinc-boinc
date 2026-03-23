@@ -330,8 +330,8 @@ security:
     @command -v trivy >/dev/null && trivy fs --severity HIGH,CRITICAL . || echo "trivy not found"
     @echo "Security audit complete"
 
-# Scan for vulnerabilities in dependencies
-audit:
+# Scan for vulnerabilities (gitleaks/trivy)
+audit-deps:
     @echo "=== Dependency Audit ==="
     @if [ -f rust-parser/Cargo.toml ]; then cd rust-parser && cargo audit && cd ..; fi
     @if [ -f elixir-coordinator/mix.exs ]; then cd elixir-coordinator && mix hex.audit && cd ..; fi
@@ -345,7 +345,6 @@ sync-metadata:
         echo "✓ Metadata synchronized"
     fi
 
-# [AUTO-GENERATED] Multi-arch / RISC-V target
-build-riscv:
-	@echo "Building for RISC-V..."
-	cross build --target riscv64gc-unknown-linux-gnu
+# Run panic-attacker pre-commit scan
+assail:
+    @command -v panic-attack >/dev/null 2>&1 && panic-attack assail . || echo "panic-attack not found — install from https://github.com/hyperpolymath/panic-attacker"
