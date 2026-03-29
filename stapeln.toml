@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+
+[project]
+name = "boinc-boinc"
+description = "Oblibeny BOINC Platform"
+
+[container]
+base = "cgr.dev/chainguard/wolfi-base:latest"
