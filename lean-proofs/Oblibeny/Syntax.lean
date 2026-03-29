@@ -2,12 +2,14 @@
   Oblibeny Syntax Formalization in Lean 4
 
   This file defines the abstract syntax of Oblibeny programs.
+
+  SPDX-License-Identifier: PMPL-1.0-or-later
 -/
 
 namespace Oblibeny
 
 /-- Types in Oblibeny -/
-inductive Ty where
+inductive Ty : Type where
   | int32 : Ty
   | int64 : Ty
   | uint32 : Ty
@@ -18,7 +20,7 @@ inductive Ty where
   | array : Ty → Nat → Ty
   | capability : ResourceType → Ty
   | fn : List Ty → Ty → Ty
-  deriving Repr, DecidableEq
+  deriving Repr
 
 /-- Resource types for capabilities -/
 inductive ResourceType where
@@ -60,28 +62,23 @@ def Expr.phase : Expr → Phase
   | defunDeploy _ _ _ => Phase.deploy
   | defunCompile _ _ _ => Phase.compile
   | boundedFor _ _ _ _ => Phase.deploy
-  | _ => Phase.deploy -- Default to deploy for safety
+  | _ => Phase.deploy
 
-/-- Check if expression contains any compile-only construct -/
+/-- Check if any expression in a list contains a compile-only construct -/
+def anyCompileOnly : List Expr → Bool
+  | [] => false
+  | e :: es =>
+    match e with
+    | Expr.defunCompile _ _ _ => true
+    | _ => anyCompileOnly es
+
+/-- Check if expression contains any compile-only construct (top-level only) -/
 def Expr.containsCompileOnly : Expr → Bool
-  | defunCompile _ _ _ => true
-  | defunDeploy _ _ body => body.any (·.containsCompileOnly)
-  | boundedFor _ start end body =>
-      start.containsCompileOnly ||
-      end.containsCompileOnly ||
-      body.any (·.containsCompileOnly)
-  | app f args =>
-      f.containsCompileOnly || args.any (·.containsCompileOnly)
-  | let_ _ e1 e2 => e1.containsCompileOnly || e2.containsCompileOnly
-  | if_ cond t e => cond.containsCompileOnly || t.containsCompileOnly || e.containsCompileOnly
-  | withCapability cap body => cap.containsCompileOnly || body.any (·.containsCompileOnly)
+  | Expr.defunCompile _ _ _ => true
+  | Expr.defunDeploy _ _ body => anyCompileOnly body
+  | Expr.let_ _ e1 e2 => e1.containsCompileOnly || e2.containsCompileOnly
+  | Expr.if_ cond t e => cond.containsCompileOnly || t.containsCompileOnly || e.containsCompileOnly
   | _ => false
-
-/-- Program is a list of top-level definitions -/
-structure Program where
-  defs : List Expr
-  budget : ResourceBudget
-  deriving Repr
 
 /-- Resource budget specification -/
 structure ResourceBudget where
@@ -89,5 +86,11 @@ structure ResourceBudget where
   memory_bytes : Nat
   network_bytes : Nat
   deriving Repr, DecidableEq
+
+/-- Program is a list of top-level definitions -/
+structure Program where
+  defs : List Expr
+  budget : ResourceBudget
+  deriving Repr
 
 end Oblibeny
