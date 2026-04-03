@@ -4,13 +4,13 @@ permissions:
 
 name: NPM/Bun Blocker
 on: [push, pull_request]
-npermissions:
+permissions:
   contents: read
 
 jobs:
   check:
     runs-on: ubuntu-latest
-npermissions:
+permissions:
   contents: read
 
     steps:

@@ -4,7 +4,7 @@ permissions:
 
 name: Well-Known Standards (RFC 9116 + RSR)
 on:
-npermissions:
+permissions:
   contents: read
 
   push:
@@ -18,7 +18,7 @@ npermissions:
   schedule:
     # Weekly expiry check
     - cron: '0 9 * * 1'
-npermissions:
+permissions:
   contents: read
 
   workflow_dispatch:
@@ -26,7 +26,7 @@ npermissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-npermissions:
+permissions:
   contents: read
 
     steps:

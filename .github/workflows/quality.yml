@@ -4,14 +4,14 @@ permissions:
 
 name: Code Quality
 on: [push, pull_request]
-npermissions:
+permissions:
   contents: read
 
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-npermissions:
+permissions:
   contents: read
 
     steps:
@@ -44,7 +44,7 @@ npermissions:
 
   docs:
     runs-on: ubuntu-latest
-npermissions:
+permissions:
   contents: read
 
     steps:
