@@ -12,3 +12,16 @@ status = "active"
 name = "boinc-boinc"
 completion-percentage = 0
 phase = "In development"
+
+[components]
+
+[components.rust-parser]
+name = "oblibeny-parser"
+type = "library"
+language = "Rust"
+edition = "2021"
+crg-grade = "C"
+test-count = 58
+benchmark-count = 7
+status = "COMPLETE - CRG Grade C achieved"
+notes = "Comprehensive test suite with 11 unit, 5 smoke, 15 property-based, 4 E2E, 3 reflexive, 5 contract, 8 aspect tests. 7 Criterion benchmarks baselined."

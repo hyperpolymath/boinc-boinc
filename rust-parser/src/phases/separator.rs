@@ -136,7 +136,7 @@ impl PhaseSeparator {
     }
 
     /// Extract all deploy-time functions from a program
-    pub fn extract_deploy_functions(&self, exprs: &[Expr]) -> Vec<&Expr> {
+    pub fn extract_deploy_functions<'a>(&self, exprs: &'a [Expr]) -> Vec<&'a Expr> {
         exprs
             .iter()
             .filter(|e| matches!(e, Expr::DefunDeploy { .. }))
@@ -144,7 +144,7 @@ impl PhaseSeparator {
     }
 
     /// Extract all compile-time functions from a program
-    pub fn extract_compile_functions(&self, exprs: &[Expr]) -> Vec<&Expr> {
+    pub fn extract_compile_functions<'a>(&self, exprs: &'a [Expr]) -> Vec<&'a Expr> {
         exprs
             .iter()
             .filter(|e| matches!(e, Expr::DefunCompile { .. } | Expr::Macro { .. }))
