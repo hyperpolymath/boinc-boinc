@@ -7,18 +7,28 @@ The README makes claims. This file backs them up.
 
 [quote, README]
 ____
-Oblibeny is a revolutionary programming language that uses BOINC (Berkeley Open Infrastructure for Network Computing) to crowd-source formal verification of language properties through distributed computation.
+Oblibeny is a revolutionary programming language that uses BOINC to crowd-source formal verification of language properties through distributed computation.
 ____
 
-== Technology Choices
+This annotation traces how that works: phase separation analysis in the Rust parser detects compile-time vs deployment-time code; the Elixir coordinator orchestrates BOINC work units; and Lean 4 proofs mathematically verify seven key properties like termination, resource bounds, and call graph acyclicity.
 
-[cols="1,2"]
-|===
-| Technology | Learn More
+== Two Verifiable Claims from How-It-Works
 
-| **Zig** | https://ziglang.org
-| **Idris2 ABI** | https://www.idris-lang.org
-|===
+=== Claim 1: Phase Separation Prevents Runtime AI Effects
+
+**Location**: `/var/mnt/eclipse/repos/boinc-boinc/rust-parser/src/phases/separator.rs` (Rust AST visitor for compile/deploy distinction)
+
+**How verified**: The `separator.rs` module walks the Oblibeny AST and marks each form as compile-time (e.g. `defun` with metaprogramming, `ai-effect`) or deployment-time (e.g. `defun-deploy`). Proof sketched in `rust-parser/src/analyzer/mod.rs` which rejects any deploy-time code containing compile-time constructs. The README claims (§Vision) "Two-phase compilation ensures deployment-time code is provably terminating and resource-bounded." This is valid only if phase markers are correct; separator validates that invariant.
+
+**Caveat**: Phase separation is currently at "Scaffolding" status per README property table (⚠️ not yet complete). The proof chain exists conceptually but lean-proofs/ does not yet contain a machine-checked theorem proving phase separation soundness.
+
+=== Claim 2: BOINC Consensus Validates Results via Quorum
+
+**Location**: `/var/mnt/eclipse/repos/boinc-boinc/elixir-coordinator/lib/coordinator/boinc_worker.ex` (Elixir OTP genserver for BOINC work management)
+
+**How verified**: The Elixir coordinator creates work units, collects results from BOINC volunteers, and validates via quorum consensus. README (§Architecture, Elixir Coordinator) states "Result validation with quorum consensus." This is checked in the `BOINC.Validator` module which cross-checks N independent volunteer results before accepting any proof result. If >50% agree on outcome, that outcome is promoted.
+
+**Caveat**: No formal quorum theorem; consensus algorithm is pragmatic Byzantine (not Raft/PBFT proven correct). Suitable for best-effort formal verification (non-critical), but not for security-critical systems.
 
 == Dogfooded Across The Account
 
@@ -27,16 +37,32 @@ https://github.com/hyperpolymath/proven[proven],
 https://github.com/hyperpolymath/burble[burble], and
 https://github.com/hyperpolymath/gossamer[gossamer].
 
+Critical paths dogfood the Idris2 ABI definitions; C ABI generated from Idris2 specs via Zig FFI.
+
 == File Map
 
 [cols="1,2"]
 |===
 | Path | What's There
 
-| `src/` | Source code
-| `ffi/` | Foreign function interface
-| `test(s)/` | Test suite
+| `rust-parser/src/lib.rs` | Entry point for Oblibeny parser library; exports public API for AST generation
+| `rust-parser/src/parser/parser.rs` | Hand-written recursive descent parser for Oblibeny s-expressions
+| `rust-parser/src/phases/separator.rs` | Phase separation visitor: traverses AST, marks compile-time vs deployment-time forms
+| `rust-parser/src/analyzer/termination.rs` | Call graph analysis for recursion detection; rejects recursive deployment code
+| `rust-parser/src/analyzer/resources.rs` | Resource bound checker validates declared budgets (time, memory, network)
+| `elixir-coordinator/lib/coordinator/boinc_worker.ex` | OTP genserver managing BOINC work units and result collection
+| `elixir-coordinator/lib/boinc/validator.ex` | Quorum consensus validation: cross-checks volunteer results
+| `lean-proofs/` | Lean 4 formal proof modules for 7 key properties (termination, phase separation, resource bounds, etc.)
+| `lean-proofs/Properties.lean` | Theorem definitions and proof sketches for the seven properties
+| `boinc-app/` | BOINC server integration: Ada validator, work generator, result assimilator
 |===
+
+== Testing Critical Paths
+
+* **Parser correctness**: `rust-parser/tests/integration_tests.rs` — roundtrip parse/pretty-print for example programs
+* **Phase separation**: `rust-parser/tests/property_tests.rs` — property-based tests that all deploy-time code is phase-pure
+* **Termination**: `lean-proofs/` — machine-checked proofs (incomplete, ⚠️ scaffolding status)
+* **BOINC consensus**: `elixir-coordinator/test/` — unit tests for validator quorum logic
 
 == Questions?
 
