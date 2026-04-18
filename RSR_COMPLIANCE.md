@@ -13,7 +13,7 @@
 | 📚 Documentation | ✅ Complete | 10/10 | All required docs present |
 | 🔒 Security | ✅ Complete | 10/10 | RFC 9116, security.txt, SECURITY.md |
 | 📜 Licensing | ✅ Complete | 10/10 | Dual MIT + Palimpsest-0.8 |
-| 🏗️ Build System | ✅ Complete | 10/10 | Nix + justfile + CI/CD |
+| 🏗️ Build System | ✅ Complete | 10/10 | Nix + Justfile + CI/CD |
 | 🧪 Testing | ⚠️ Partial | 3/10 | Infrastructure ready, tests TODO |
 | 🔐 Type Safety | ✅ Complete | 10/10 | Rust + Elixir + Lean strong types |
 | 🛡️ Memory Safety | ✅ Complete | 10/10 | Rust ownership, zero unsafe blocks |
@@ -91,7 +91,7 @@
 
 **Required**:
 - [x] Nix flake with reproducible builds
-- [x] justfile with 30+ recipes
+- [x] Justfile with 30+ recipes
 - [x] CI/CD pipeline (.gitlab-ci.yml)
 - [x] Multi-language build support
 
@@ -247,7 +247,7 @@ grep -r "unsafe" src/ || echo "No unsafe blocks found"
 4. **Memory safety**: ✅ Rust ownership model
 5. **Offline-first**: ✅ No network dependencies
 6. **Complete documentation**: ✅ All required files
-7. **Build system**: ✅ Nix + justfile + CI/CD
+7. **Build system**: ✅ Nix + Justfile + CI/CD
 8. **Test infrastructure**: ✅ Ready (tests TODO)
 9. **TPCF perimeter**: ✅ Perimeter 3 assigned
 10. **Dual licensing**: ✅ MIT + Palimpsest-0.8

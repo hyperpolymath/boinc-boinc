@@ -92,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - .well-known/security.txt (RFC 9116 compliance)
 - .well-known/ai.txt (AI training policies)
 - .well-known/humans.txt (attribution)
-- justfile (build automation with 20+ recipes)
+- Justfile (build automation with 20+ recipes)
 - RSR self-verification script
 
 === Technical Decisions
