@@ -2,7 +2,7 @@
 
 ## CRG Grade: C — ACHIEVED 2026-04-04
 
-<!-- SPDX-License-Identifier: PMPL-1.0-or-later -->
+<!-- SPDX-License-Identifier: MPL-2.0 -->
 
 ## Test Coverage Summary
 

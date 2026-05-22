@@ -3,7 +3,7 @@
 
   Theorem: No compile-time construct appears in deploy-time code.
 
-  SPDX-License-Identifier: PMPL-1.0-or-later
+  SPDX-License-Identifier: MPL-2.0
 -/
 
 import Oblibeny.Syntax

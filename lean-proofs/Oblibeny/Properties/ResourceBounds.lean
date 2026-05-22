@@ -4,7 +4,7 @@
   Theorem: Resource usage never exceeds declared budgets.
   WCET (Worst-Case Execution Time) analysis provides conservative fuel estimates.
 
-  SPDX-License-Identifier: PMPL-1.0-or-later
+  SPDX-License-Identifier: MPL-2.0
 -/
 
 import Oblibeny.Syntax
