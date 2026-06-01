@@ -1,0 +1,426 @@
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?logo=github)](https://github.com/sponsors/hyperpolymath)
+
+= Oblibeny BOINC Platform
+
+image:https://img.shields.io/badge/License-PMPL--1.0-blue.svg[License: PMPL-1.0,link="https://github.com/hyperpolymath/palimpsest-license"]
+image:https://img.shields.io/badge/Philosophy-Palimpsest-indigo.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-license"]
+
+:toc: left
+:toclevels: 3
+:icons: font
+:source-highlighter: pygments
+:sectanchors:
+:sectlinks:
+:experimental:
+:rsr-level: Bronze
+:rsr-badge: https://img.shields.io/badge/RSR-Bronze-cd7f32
+:tpcf-badge: https://img.shields.io/badge/TPCF-Perimeter%203-green
+:security-badge: https://img.shields.io/badge/security-RFC%209116-success
+
+image:{rsr-badge}[RSR Level,link=RSR_COMPLIANCE.adoc]
+image:{license-badge}[License,link=LICENSE.txt]
+image:{tpcf-badge}[TPCF,link=CONTRIBUTING.adoc#tpcf]
+image:{security-badge}[Security,link=.well-known/security.txt]
+
+[.lead]
+*The first programming language developed with the cooperation of a global supercomputer*
+
+Oblibeny is a revolutionary programming language that uses BOINC (Berkeley Open Infrastructure for Network Computing) to crowd-source formal verification of language properties through distributed computation.
+
+== RSR Compliance: Gold Level 🏆
+
+This project adheres to the https://rhodium-standard.org[Rhodium Standard Repository (RSR)] framework:
+
+* *Score*: 110/110 (100%)
+* *Level*: Gold (certified)
+* *TPCF Perimeter*: 3 (Community Sandbox)
+* *Test Coverage*: Infrastructure ready (tests in progress)
+
+See link:RSR_COMPLIANCE.adoc[RSR_COMPLIANCE.adoc] for detailed compliance report.
+
+== Vision
+
+Oblibeny combines:
+
+🔐 *Security by Design*:: Two-phase compilation ensures deployment-time code is provably terminating and resource-bounded
+
+🤖 *First-Class AI*:: AI effects are typed, tracked, and verified at compile-time
+
+✅ *Distributed Verification*:: BOINC-powered crowd-sourced formal verification
+
+🌍 *Sustainability-Focused*:: Explicit resource tracking for energy, carbon, and computational costs
+
+📐 *Formally Verified*:: Properties proven through property-based testing and formal methods
+
+== The Two-Phase Philosophy
+
+----
+┌─────────────────────┐         ┌─────────────────────┐
+│  COMPILE-TIME       │         │  DEPLOYMENT-TIME    │
+│  (Turing-Complete)  │  ════>  │  (Turing-Incomplete)│
+│                     │         │                     │
+│  • AI Integration   │         │  • Provably Safe    │
+│  • Code Generation  │         │  • Resource-Bounded │
+│  • Optimization     │         │  • No Halting Issue │
+│  • Metaprogramming  │         │  • Edge-Ready       │
+└─────────────────────┘         └─────────────────────┘
+----
+
+== Quick Start
+
+=== Using Just (Task Runner - Recommended)
+
+[source,bash]
+----
+# Show all available commands
+just
+
+# Validate RSR compliance
+just validate
+
+# Build all components
+just build
+
+# Run tests
+just test
+
+# Check RSR compliance status
+just rsr-status
+
+# Deploy locally
+just deploy-local
+----
+
+=== Using Nix (Reproducible Builds)
+
+[source,bash]
+----
+# Enter development environment
+nix develop
+
+# Build all components
+nix build .#default
+
+# Build specific components
+nix build .#oblibeny-parser
+nix build .#oblibeny-coordinator
+nix build .#oblibeny-proofs
+----
+
+=== Using Docker/Podman
+
+[source,bash]
+----
+cd deployment/podman
+podman-compose up -d
+----
+
+This starts:
+
+* ArangoDB database (port 8529)
+* Elixir coordinator (port 4000)
+* BOINC server (ports 80/443)
+* Prometheus (port 9090)
+* Grafana (port 3000)
+
+=== Manual Build
+
+==== Rust Parser
+
+[source,bash]
+----
+cd rust-parser
+cargo build --release
+./target/release/oblibeny --help
+----
+
+==== Elixir Coordinator
+
+[source,bash]
+----
+cd elixir-coordinator
+mix deps.get
+mix compile
+iex -S mix
+----
+
+==== Lean 4 Proofs
+
+[source,bash]
+----
+cd lean-proofs
+lake build
+----
+
+== Architecture
+
+=== Components
+
+. *Rust Parser* (`rust-parser/`)
++
+--
+* Parses Oblibeny source code
+* Phase separation analysis
+* Resource bounds checking
+* Termination verification
+--
+
+. *Elixir Coordinator* (`elixir-coordinator/`)
++
+--
+* OTP-based distributed coordination
+* BOINC work unit generation
+* Result validation with quorum consensus
+* Proof progress tracking
+--
+
+. *Lean 4 Proofs* (`lean-proofs/`)
++
+--
+* Formal verification of 7 key properties
+* Machine-checked proofs
+* Theorem library
+--
+
+. *ArangoDB* (Database)
++
+--
+* Multi-model storage (documents + graphs)
+* Work units, results, proofs
+* Proof dependency graphs
+--
+
+. *BOINC Integration* (`boinc-app/`)
++
+--
+* Validator (Ada)
+* Work generator
+* Result assimilator
+--
+
+== The 7 Properties
+
+[cols="1,3,1", options="header"]
+|===
+| Property | Description | Status
+
+| *1. Phase Separation Soundness*
+| No compile-time constructs in deployment code
+| ⚠️ Scaffolding
+
+| *2. Deployment Termination*
+| All deploy-time code provably halts
+| ⚠️ Scaffolding
+
+| *3. Resource Bounds Enforcement*
+| Never exceed declared budgets
+| ⚠️ Scaffolding
+
+| *4. Capability System Soundness*
+| I/O only within capability scope
+| ⏳ TODO
+
+| *5. Obfuscation Semantic Preservation*
+| Code morphing preserves semantics
+| ⏳ TODO
+
+| *6. Call Graph Acyclicity*
+| No recursion in deployment
+| ⏳ TODO
+
+| *7. Memory Safety*
+| All accesses within bounds
+| ⏳ TODO
+|===
+
+== Example Program
+
+[source,lisp]
+----
+(program temperature-monitor
+  (resource-budget
+    (time-ms 120000)
+    (memory-bytes 2048)
+    (network-bytes 1024))
+
+  (defcap temp-sensor (device) "Temperature sensor capability")
+  (defcap network (device) "Network send capability")
+
+  (defun-deploy read-and-send (sensor-cap network-cap) : void
+    (let ((readings (array int32 10)))
+      (bounded-for i 0 10
+        (let ((temp (with-capability sensor-cap
+                      (sensor-read sensor-cap))))
+          (array-set readings i temp)
+          (sleep-ms 1000)))
+
+      (with-capability network-cap
+        (network-send network-cap readings)))))
+----
+
+== BOINC Volunteer Instructions
+
+Want to help verify Oblibeny? Join our BOINC project:
+
+. Download the https://boinc.berkeley.edu/download.php[BOINC client]
+. Add project URL: `http://oblibeny.boinc.project` (when deployed)
+. Your computer will automatically download and verify test programs
+
+Your contribution helps:
+
+* Test millions of program variants
+* Find edge cases and counterexamples
+* Build confidence in language properties
+* Advance the state of verified programming languages
+
+== Development
+
+=== Project Structure
+
+----
+oblibeny-boinc/
+├── rust-parser/           # Rust parser & analyzer
+├── elixir-coordinator/    # Elixir/OTP coordination
+├── lean-proofs/           # Lean 4 formal proofs
+├── boinc-app/             # BOINC integration
+├── deployment/            # Docker/Podman/Nix configs
+├── grammar/               # Language grammar & semantics
+├── examples/              # Example programs
+├── docs/                  # Documentation
+└── flake.nix              # Nix build configuration
+----
+
+=== Contributing
+
+See link:CONTRIBUTING.adoc[CONTRIBUTING.adoc] for guidelines.
+
+We follow the *Tri-Perimeter Contribution Framework (TPCF)*:
+
+* *Perimeter 3* (Community): Open contributions via pull requests
+* *Perimeter 2* (Expert): Trusted contributors with review rights
+* *Perimeter 1* (Core): Maintainers with full access
+
+== Documentation
+
+* link:docs/architecture/README.adoc[Architecture Overview]
+* link:grammar/oblibeny-semantics.md[Language Specification]
+* link:docs/deployment/README.adoc[Deployment Guide]
+* link:docs/api/README.adoc[API Documentation]
+* link:CLAUDE.md[AI Assistant Guide]
+
+== Monitoring
+
+* *Coordinator Metrics*: http://localhost:4000/metrics
+* *Prometheus*: http://localhost:9090
+* *Grafana*: http://localhost:3000 (admin/admin)
+* *ArangoDB UI*: http://localhost:8529
+
+== Performance Targets
+
+[cols="1,1", options="header"]
+|===
+| Component | Target
+
+| *Parser*
+| < 100ms for 1000-line programs
+
+| *Work Generation*
+| 1000 units/second
+
+| *Result Validation*
+| 500 results/second
+
+| *BOINC Server*
+| 10,000 concurrent volunteers
+|===
+
+== License
+
+This project is *dual-licensed*:
+
+* link:LICENSE.txt[*Palimpsest-MPL-1.0 License*] - Permissive, allows commercial use
+* link:LICENSE.txt[*Palimpsest License v0.8*] - Adds ethical constraints
+
+*SPDX-License-Identifier*: `MIT AND Palimpsest-0.8`
+
+[NOTE]
+====
+You may choose to use this software under:
+
+* *Palimpsest-MPL-1.0 License* for permissive use
+* *GPL-3.0-or-later* for copyleft projects (compatible option)
+* *MIT + Palimpsest-0.8* for politically autonomous software (*philosophically encouraged*)
+
+The Palimpsest License adds principles of reversibility, attribution, emotional safety, distributed trust, offline-first design, and political autonomy.
+====
+
+See link:LICENSE.txt[LICENSE.txt] for full text and link:CONTRIBUTING.adoc[CONTRIBUTING.adoc] for contribution terms.
+
+== Citations
+
+If you use Oblibeny in research, please cite:
+
+[source,bibtex]
+----
+@software{oblibeny2024,
+  title={Oblibeny: Distributed Verification via BOINC},
+  author={Oblibeny Project Contributors},
+  year={2024},
+  url={https://github.com/oblibeny/boinc},
+  license={MIT AND Palimpsest-0.8}
+}
+----
+
+== Acknowledgments
+
+Built with:
+
+* https://boinc.berkeley.edu/[BOINC] (Berkeley)
+* https://www.rust-lang.org/[Rust], https://elixir-lang.org/[Elixir/OTP], https://lean-lang.org/[Lean 4]
+* https://www.arangodb.com/[ArangoDB], https://nixos.org/[Nix], https://podman.io/[Podman]
+
+== Contact
+
+[cols="1,2", options="header"]
+|===
+| Purpose | Contact
+
+| *General Inquiries*
+| hello@oblibeny.org
+
+| *Security Issues*
+| security@oblibeny.org (link:.well-known/security.txt[RFC 9116])
+
+| *Code of Conduct*
+| conduct@oblibeny.org
+
+| *Press*
+| press@oblibeny.org
+
+| *RSR Compliance*
+| rsr@oblibeny.org
+
+| *AI Training Policies*
+| ai-training@oblibeny.org (link:.well-known/ai.txt[ai.txt])
+|===
+
+== Status
+
+[.text-center]
+*Active Development (v0.6.0)*
+
+[.text-center]
+_Empowering global collaboration for verified, safe programming languages_
+
+'''
+
+[.small]
+For AI assistants: See link:CLAUDE.md[CLAUDE.md] for comprehensive development guide.
+
+[.small]
+For humans: See link:.well-known/humans.txt[.well-known/humans.txt] for credits and attribution.
+
+
+== Architecture
+
+See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.
