@@ -1,6 +1,10 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # Reversibility
 
-This document explains how all operations in the Oblibeny BOINC Platform are reversible, in accordance with the Palimpsest License v0.8 and RSR (Rhodium Standard Repository) principles.
+This document explains how all operations in the Oblibeny BOINC Platform are reversible, in accordance with the MPL-2.0 v0.8 and RSR (Rhodium Standard Repository) principles.
 
 ## Core Principle
 
@@ -395,7 +399,7 @@ Like a palimpsest, our system preserves layers of history. Nothing is truly eras
 
 ## See Also
 
-- [LICENSE.txt](LICENSE.txt) - Palimpsest License v0.8
+- [LICENSE.txt](LICENSE.txt) - MPL-2.0 v0.8
 - [GOVERNANCE.adoc](GOVERNANCE.adoc) - Governance reversibility
 - [SECURITY.md](SECURITY.md) - Security incident reversibility
 - [CONTRIBUTING.adoc](CONTRIBUTING.adoc) - Contribution process

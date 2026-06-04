@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 // Integration, reflexive, contract, and aspect tests for oblibeny-parser
 
 use oblibeny_parser::parser::parse_file;

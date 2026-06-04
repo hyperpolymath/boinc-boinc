@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 use super::types::{Parameter, ResourceType, Type};
 use serde::{Deserialize, Serialize};
 use std::fmt;

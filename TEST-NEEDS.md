@@ -1,8 +1,10 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # TEST-NEEDS.md — boinc-boinc
 
 ## CRG Grade: C — ACHIEVED 2026-04-04
-
-<!-- SPDX-License-Identifier: MPL-2.0 -->
 
 ## Test Coverage Summary
 
