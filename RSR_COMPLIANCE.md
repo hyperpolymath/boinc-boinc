@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # RSR Framework Compliance Report
 
 **Project**: Oblibeny BOINC Platform
@@ -312,7 +316,7 @@ Verified by:
 
 - RSR Framework: https://rhodium-standard.org
 - TPCF Specification: https://tpcf.standard.org
-- Palimpsest License: https://palimpsest.license
+- MPL-2.0: https://palimpsest.license
 - CCCP Manifesto: https://cccp.community
 
 ---

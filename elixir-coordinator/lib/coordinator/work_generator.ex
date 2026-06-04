@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 defmodule Coordinator.WorkGenerator do
   @moduledoc """
   Generates BOINC work units for Oblibeny verification.

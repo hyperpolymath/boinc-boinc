@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 use crate::ast::Expr;
 use crate::analyzer::call_graph::CallGraph;
 use thiserror::Error;

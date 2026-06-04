@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 use crate::ast::Expr;
 use petgraph::graph::{DiGraph, NodeIndex};
 use petgraph::algo::is_cyclic_directed;
