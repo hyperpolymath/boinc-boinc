@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MPL-2.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-// {{PROJECT}} FFI Build Configuration
+// BOINC_BOINC FFI Build Configuration
 
 const std = @import("std");
 
