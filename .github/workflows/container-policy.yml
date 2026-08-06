@@ -13,16 +13,11 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-permissions:
-  contents: read
 
 jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-permissions:
-  contents: read
-
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
       - name: Enforce container policy
