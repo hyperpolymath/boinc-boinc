@@ -2,15 +2,15 @@
 SPDX-License-Identifier: CC-BY-SA-4.0
 Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 -->
-# Task 3: Nix Build System
+# Task 3: Guix Build System
 
 ## Objective
-Create reproducible builds for all Oblibeny BOINC components using Nix flakes.
+Create reproducible builds for all Oblibeny BOINC components using Guix flakes.
 
 ## Deliverables
 
 ### 1. Main Flake
-```nix
+```guix
 {
   description = "Oblibeny BOINC Platform";
 
@@ -57,7 +57,7 @@ Create reproducible builds for all Oblibeny BOINC components using Nix flakes.
 ```
 
 ### 2. Component Packages
-- Rust parser Nix derivation
+- Rust parser Guix derivation
 - Elixir coordinator package
 - Lean proofs build
 - Phoenix dashboard assets

@@ -17,7 +17,7 @@ Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 | 📚 Documentation | ✅ Complete | 10/10 | All required docs present |
 | 🔒 Security | ✅ Complete | 10/10 | RFC 9116, security.txt, SECURITY.md |
 | 📜 Licensing | ✅ Complete | 10/10 | Dual MIT + Palimpsest-0.8 |
-| 🏗️ Build System | ✅ Complete | 10/10 | Nix + Justfile + CI/CD |
+| 🏗️ Build System | ✅ Complete | 10/10 | Guix + Justfile + CI/CD |
 | 🧪 Testing | ⚠️ Partial | 3/10 | Infrastructure ready, tests TODO |
 | 🔐 Type Safety | ✅ Complete | 10/10 | Rust + Elixir + Lean strong types |
 | 🛡️ Memory Safety | ✅ Complete | 10/10 | Rust ownership, zero unsafe blocks |
@@ -94,7 +94,7 @@ Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 ### 4. Build System (10/10) ✅
 
 **Required**:
-- [x] Nix flake with reproducible builds
+- [x] Guix flake with reproducible builds
 - [x] Justfile with 30+ recipes
 - [x] CI/CD pipeline (.gitlab-ci.yml)
 - [x] Multi-language build support
@@ -192,7 +192,7 @@ grep -r "unsafe" src/ || echo "No unsafe blocks found"
 **Network Independence**:
 - [x] Parser works offline (no network calls)
 - [x] Analyzer works offline
-- [x] Build system works offline (Nix caching)
+- [x] Build system works offline (Guix caching)
 - [x] Documentation accessible offline
 - [x] Examples run without network
 
@@ -251,7 +251,7 @@ grep -r "unsafe" src/ || echo "No unsafe blocks found"
 4. **Memory safety**: ✅ Rust ownership model
 5. **Offline-first**: ✅ No network dependencies
 6. **Complete documentation**: ✅ All required files
-7. **Build system**: ✅ Nix + Justfile + CI/CD
+7. **Build system**: ✅ Guix + Justfile + CI/CD
 8. **Test infrastructure**: ✅ Ready (tests TODO)
 9. **TPCF perimeter**: ✅ Perimeter 3 assigned
 10. **Dual licensing**: ✅ MIT + Palimpsest-0.8

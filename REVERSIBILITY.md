@@ -103,12 +103,12 @@ Critical operations use event sourcing:
 
 ## Infrastructure Reversibility
 
-### Nix-Based Deployment
+### Guix-Based Deployment
 
 All infrastructure is defined as code:
 
-```nix
-# flake.nix defines entire environment
+```guix
+# flake.guix defines entire environment
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   
@@ -122,7 +122,7 @@ All infrastructure is defined as code:
 
 ```bash
 git checkout HEAD~1 -- flake.lock
-nix flake update
+guix flake update
 ```
 
 ### Podman Container Rollback

@@ -226,13 +226,13 @@ dev-setup:
     @echo "Setting up development environment..."
     ./scripts/setup/dev-setup.sh
 
-# Enter Nix development shell
-nix-shell:
-    nix develop
+# Enter Guix development shell
+guix-shell:
+    guix develop
 
-# Build with Nix
-nix-build:
-    nix build .#default
+# Build with Guix
+guix-build:
+    guix build .#default
 
 # CI/CD simulation (local)
 ci: validate build test lint audit
@@ -258,7 +258,7 @@ rsr-status:
     @echo ""
     @echo "Categories:"
     @echo "  ✅ Category 1: Foundational Infrastructure"
-    @echo "      - Nix flakes, Nickel config (planned), Justfile, Podman"
+    @echo "      - Guix flakes, Nickel config (planned), Justfile, Podman"
     @echo "  ✅ Category 2: Documentation Standards"
     @echo "      - README.adoc, LICENSE.txt, SECURITY.md, CODE_OF_CONDUCT.md"
     @echo "      - CONTRIBUTING.md, FUNDING.yml, GOVERNANCE.adoc, MAINTAINERS.md"

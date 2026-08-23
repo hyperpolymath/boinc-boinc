@@ -131,7 +131,7 @@ This document captures the autonomous development session (2024-11) where Claude
 
 **Files Created**:
 
-#### Nix Flake (`flake.nix`)
+#### Guix Flake (`flake.guix`)
 - Multi-package build system
 - Dev shells for Rust/Elixir/Lean
 - NixOS module for deployment
@@ -151,7 +151,7 @@ This document captures the autonomous development session (2024-11) where Claude
 
 **Capabilities**:
 - One-command deployment: `podman-compose up`
-- Reproducible Nix builds
+- Reproducible Guix builds
 - Health checks and monitoring
 - Automatic database initialization
 
@@ -206,13 +206,13 @@ All examples demonstrate:
 
 **Total Files Created**: ~60+ production files
 **Total Lines of Code**: ~5,000+ (excluding docs/comments)
-**Languages**: Rust, Elixir, Lean 4, Nix, JavaScript, YAML, Markdown
+**Languages**: Rust, Elixir, Lean 4, Guix, JavaScript, YAML, Markdown
 
 **Breakdown**:
 - Rust: ~2,000 lines
 - Elixir: ~1,500 lines
 - Lean 4: ~800 lines
-- Nix/Config/Deployment: ~500 lines
+- Guix/Config/Deployment: ~500 lines
 - Documentation: ~5,000 lines
 
 ## Quality Assessment
@@ -300,7 +300,7 @@ curl http://localhost:8529/_db/oblibeny_boinc/_api/collection
    - Rationale: Multi-model (documents + graphs)
    - Result: Single DB with both paradigms
 
-5. **Nix for Builds**
+5. **Guix for Builds**
    - Rationale: True reproducibility
    - Result: Hermetic builds across platforms
 

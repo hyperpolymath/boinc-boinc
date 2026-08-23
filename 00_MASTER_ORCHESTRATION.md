@@ -73,8 +73,8 @@ Build a distributed verification platform for Oblibeny, a novel programming lang
 - Fault-tolerant distributed coordination
 - ArangoDB integration
 
-### Task 3: Nix Build System
-**Location**: `deployment/nix/`
+### Task 3: Guix Build System
+**Location**: `deployment/guix/`
 **Purpose**: Reproducible builds for all components
 
 **Deliverables**:
@@ -139,7 +139,7 @@ Build a distributed verification platform for Oblibeny, a novel programming lang
 **Components**:
 - Podman containers for all services
 - Docker Compose for development
-- Nix-based builds
+- Guix-based builds
 - Nickel configurations
 
 ## Technology Stack Rationale
@@ -169,7 +169,7 @@ Build a distributed verification platform for Oblibeny, a novel programming lang
 - **Use Case**: Proof dependencies are naturally graph-shaped
 - **Trade-off**: Less common than Postgres, but better fit
 
-### Nix (Builds)
+### Guix (Builds)
 - **Why**: Truly reproducible builds
 - **Use Case**: Ensuring volunteers run identical code
 - **Trade-off**: Steep learning curve, but essential for security
@@ -264,13 +264,13 @@ Build a distributed verification platform for Oblibeny, a novel programming lang
 
 ```bash
 # Enter development shell
-nix develop
+guix develop
 
 # Build all components
-nix build .#all
+guix build .#all
 
 # Run tests
-nix build .#tests
+guix build .#tests
 
 # Deploy to staging
 ./scripts/deploy/staging.sh
@@ -327,7 +327,7 @@ oblibeny-boinc/
 4. **Rust for parser**: Performance + correctness
 5. **Lean 4 over Coq**: Modern tooling, better for newcomers
 6. **ArangoDB over Neo4j+Postgres**: Single DB with both models
-7. **Nix over Docker**: True reproducibility
+7. **Guix over Docker**: True reproducibility
 8. **Nickel for config**: Type safety prevents deployment errors
 
 ## Open Questions / TODOs
@@ -336,7 +336,7 @@ oblibeny-boinc/
 - [ ] Choose proof strategy for property #5 (semantic preservation)
 - [ ] Decide on volunteer credit/badging system
 - [ ] Plan for handling malicious volunteers (Byzantine fault tolerance)
-- [ ] Design cache warming strategy for Nix builds
+- [ ] Design cache warming strategy for Guix builds
 - [ ] Determine ArangoDB sharding strategy for scale
 
 ## References

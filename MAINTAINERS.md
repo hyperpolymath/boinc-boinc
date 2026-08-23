@@ -40,7 +40,7 @@ This document lists the current maintainers of the Oblibeny BOINC Platform.
 
 #### Deployment & Infrastructure
 - **Maintainer**: (Open position)
-- **Responsibilities**: Nix, Docker, CI/CD, production deployment
+- **Responsibilities**: Guix, Docker, CI/CD, production deployment
 - **Contact**: (To be added)
 
 ## Trusted Contributors (Perimeter 2)

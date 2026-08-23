@@ -56,7 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 7 Lean modules (~800 LOC)
 
 #### Deployment Infrastructure
-- Nix flake with reproducible builds for all components
+- Guix flake with reproducible builds for all components
 - Docker Compose with 5 services:
   - ArangoDB (multi-model database)
   - Elixir coordinator
@@ -83,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Temperature monitoring system
   - Multi-round XOR encryption
 - GitLab CI/CD pipeline configuration
-- Nix development shells
+- Guix development shells
 - Environment-specific configs
 
 ### RSR Compliance Added
@@ -103,7 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Elixir/OTP for coordinator: Built for distributed fault tolerance
 - Lean 4 over Coq: Modern tooling, active community
 - ArangoDB over Neo4j+Postgres: Single multi-model database
-- Nix for builds: Reproducible across platforms
+- Guix for builds: Reproducible across platforms
 - Self-hosted BOINC: Full control, no external dependencies
 
 ### Known Limitations

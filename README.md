@@ -95,19 +95,19 @@ just rsr-status
 just deploy-local
 ```
 
-## Using Nix (Reproducible Builds)
+## Using Guix (Reproducible Builds)
 
 ```bash
 # Enter development environment
-nix develop
+guix develop
 
 # Build all components
-nix build .#default
+guix build .#default
 
 # Build specific components
-nix build .#oblibeny-parser
-nix build .#oblibeny-coordinator
-nix build .#oblibeny-proofs
+guix build .#oblibeny-parser
+guix build .#oblibeny-coordinator
+guix build .#oblibeny-proofs
 ```
 
 ## Using Docker/Podman
@@ -290,11 +290,11 @@ Your contribution helps:
     ├── elixir-coordinator/    # Elixir/OTP coordination
     ├── lean-proofs/           # Lean 4 formal proofs
     ├── boinc-app/             # BOINC integration
-    ├── deployment/            # Docker/Podman/Nix configs
+    ├── deployment/            # Docker/Podman/Guix configs
     ├── grammar/               # Language grammar & semantics
     ├── examples/              # Example programs
     ├── docs/                  # Documentation
-    └── flake.nix              # Nix build configuration
+    └── flake.guix              # Guix build configuration
 
 ## Contributing
 
@@ -393,7 +393,7 @@ Built with:
   [Elixir/OTP](https://elixir-lang.org/), [Lean
   4](https://lean-lang.org/)
 
-- [ArangoDB](https://www.arangodb.com/), [Nix](https://nixos.org/),
+- [ArangoDB](https://www.arangodb.com/), [Guix](https://nixos.org/),
   [Podman](https://podman.io/)
 
 # Contact

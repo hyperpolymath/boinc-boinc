@@ -517,8 +517,8 @@ FOR p IN programs
 
 ## Development Environment
 
-### Nix Flake Structure
-```nix
+### Guix Flake Structure
+```guix
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

@@ -44,7 +44,7 @@ Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 
                         ┌─────────────────────────────────────────┐
                         │          REPO INFRASTRUCTURE            │
-                        │  Nix / flake.nix    .machine_readable/  │
+                        │  Guix / flake.guix    .machine_readable/  │
                         │  Justfile           Tri-Perimeter CF    │
                         └─────────────────────────────────────────┘
 ```
@@ -65,7 +65,7 @@ DISTRIBUTED SYSTEM
   Ada Validator                     ████████░░  80%    Quorum consensus refined
 
 INFRASTRUCTURE
-  Nix Development Env               ██████████ 100%    Reproducible builds verified
+  Guix Development Env               ██████████ 100%    Reproducible builds verified
   ArangoDB (Multi-model)            ██████████ 100%    Proof dependency graphs active
   Podman/Docker Compose             ██████████ 100%    Full stack deployment stable
 

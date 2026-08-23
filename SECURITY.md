@@ -59,7 +59,7 @@ All user inputs are validated at multiple levels:
 ### Dependency Security
 - Rust: `cargo audit` in CI/CD
 - Elixir: `mix audit` for hex dependencies
-- Nix: Reproducible builds with content addressing
+- Guix: Reproducible builds with content addressing
 
 ### Secrets Management
 - Never commit secrets to repository
