@@ -30,7 +30,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "nix"
+  - package-ecosystem: "guix"
     directory: "/"
     schedule:
       interval: "weekly"

@@ -1,17 +1,16 @@
-<!--
-SPDX-License-Identifier: CC-BY-SA-4.0
-Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
--->
-# Common Technical Context
+== Common Technical Context
 
-This document contains shared technical specifications referenced by all task documents.
+This document contains shared technical specifications referenced by all
+task documents.
 
-## Oblibeny Language v0.6 Specification
+=== Oblibeny Language v0.6 Specification
 
-### Syntax Overview
+==== Syntax Overview
 
-**S-Expression Based** (Lisp-like):
-```lisp
+*S-Expression Based* (Lisp-like):
+
+[source,lisp]
+----
 (defun-deploy fibonacci (n)
   (let ((a 0) (b 1) (temp 0))
     (bounded-for i 0 n
@@ -19,130 +18,112 @@ This document contains shared technical specifications referenced by all task do
       (set a b)
       (set b temp))
     a))
-```
+----
 
-### Phase System
+==== Phase System
 
-#### Compile-Time Phase
-**Allowed**:
-- Arbitrary computation (Turing-complete)
-- I/O (read files, network, etc.)
-- Macros and code generation
-- Recursion, unbounded loops
+===== Compile-Time Phase
+
+*Allowed*: - Arbitrary computation (Turing-complete) - I/O (read files,
+network, etc.) - Macros and code generation - Recursion, unbounded loops
 - Dynamic memory allocation
 
-**Syntax**:
-- `defun-compile` - Compile-time functions
-- `eval-compile` - Evaluate at compile time
-- `macro` - Define macros
-- `include` - Include files
-- Standard Lisp-like constructs
+*Syntax*: - `+defun-compile+` - Compile-time functions -
+`+eval-compile+` - Evaluate at compile time - `+macro+` - Define macros
+- `+include+` - Include files - Standard Lisp-like constructs
 
-#### Deploy-Time Phase
-**Restrictions**:
-- Must provably terminate
-- No recursion (call graph acyclic)
-- Only `bounded-for` loops (static bounds)
-- No syscalls (only capability-based I/O)
-- Static memory bounds
+===== Deploy-Time Phase
 
-**Syntax**:
-- `defun-deploy` - Deploy-time functions
-- `bounded-for var start end body` - Bounded iteration
-- `with-capability cap body` - Capability-scoped execution
-- Limited to terminable constructs
+*Restrictions*: - Must provably terminate - No recursion (call graph
+acyclic) - Only `+bounded-for+` loops (static bounds) - No syscalls
+(only capability-based I/O) - Static memory bounds
 
-### Type System
+*Syntax*: - `+defun-deploy+` - Deploy-time functions -
+`+bounded-for var start end body+` - Bounded iteration -
+`+with-capability cap body+` - Capability-scoped execution - Limited to
+terminable constructs
 
-**Static Types**:
-- `int32`, `int64`, `uint32`, `uint64`
-- `float32`, `float64`
-- `bool`
-- `string` (immutable, bounded length)
-- `array[T, N]` (fixed size N, type T)
-- `capability[Resource]` (linear types)
+==== Type System
 
-**Type Inference**:
-- Bidirectional type checking
-- Explicit annotations optional but recommended
-- Full inference for local bindings
+*Static Types*: - `+int32+`, `+int64+`, `+uint32+`, `+uint64+` -
+`+float32+`, `+float64+` - `+bool+` - `+string+` (immutable, bounded
+length) - `+array[T, N]+` (fixed size N, type T) -
+`+capability[Resource]+` (linear types)
 
-### Resource System
+*Type Inference*: - Bidirectional type checking - Explicit annotations
+optional but recommended - Full inference for local bindings
 
-**Resource Budgets** (static analysis):
-```lisp
+==== Resource System
+
+*Resource Budgets* (static analysis):
+
+[source,lisp]
+----
 (resource-budget
   (time-ms 1000)
   (memory-bytes 65536)
   (network-bytes 4096))
-```
+----
 
-**Capabilities**:
-```lisp
+*Capabilities*:
+
+[source,lisp]
+----
 (with-capability uart-tx (bytes 100)
   (uart-send device "Hello"))
-```
+----
 
-**Linear Capabilities**:
-- Must be used exactly once
-- Cannot be duplicated
-- Compiler enforces via linear type system
+*Linear Capabilities*: - Must be used exactly once - Cannot be
+duplicated - Compiler enforces via linear type system
 
-### Termination Analysis
+==== Termination Analysis
 
-**Approaches**:
-1. **Bounded loops**: Static upper bounds checked
-2. **Call graph**: Must be acyclic (no recursion)
-3. **Resource budgets**: Time/memory limits
-4. **Ranking functions**: Auto-generated for complex cases
+*Approaches*: 1. *Bounded loops*: Static upper bounds checked 2. *Call
+graph*: Must be acyclic (no recursion) 3. *Resource budgets*:
+Time/memory limits 4. *Ranking functions*: Auto-generated for complex
+cases
 
-### Memory Model
+==== Memory Model
 
-**Allocation**:
-- Stack-only for deploy-time code
-- All sizes statically known
-- No heap, no GC
+*Allocation*: - Stack-only for deploy-time code - All sizes statically
+known - No heap, no GC
 
-**Arrays**:
-- Fixed size known at compile time
-- Bounds checked (proven safe)
-- No dynamic resizing
+*Arrays*: - Fixed size known at compile time - Bounds checked (proven
+safe) - No dynamic resizing
 
-### Capability Model
+==== Capability Model
 
-**I/O Abstraction**:
-```lisp
+*I/O Abstraction*:
+
+[source,lisp]
+----
 (defcap uart-tx (device budgeted-bytes)
   "Write capability for UART device")
 
 (defcap sensor-read (device max-samples)
   "Read capability for sensor")
-```
+----
 
-**Budget Enforcement**:
-- Static analysis verifies budgets not exceeded
-- Runtime checks for dynamic data sizes
-- Fail-stop behavior on budget violation
+*Budget Enforcement*: - Static analysis verifies budgets not exceeded -
+Runtime checks for dynamic data sizes - Fail-stop behavior on budget
+violation
 
-### Semantic Obfuscation
+==== Semantic Obfuscation
 
-**Code Morphing**:
-- Each deployment generates different bytecode
-- Semantics proven equivalent
-- Control flow randomization
-- Instruction scheduling variations
-- Register allocation randomization
+*Code Morphing*: - Each deployment generates different bytecode -
+Semantics proven equivalent - Control flow randomization - Instruction
+scheduling variations - Register allocation randomization
 
-**Preservation**:
-- Operational semantics unchanged
-- Observational equivalence proven
-- Side effects identical
-- Resource usage within bounds
+*Preservation*: - Operational semantics unchanged - Observational
+equivalence proven - Side effects identical - Resource usage within
+bounds
 
-### Example Programs
+==== Example Programs
 
-#### Example 1: LED Blinker
-```lisp
+===== Example 1: LED Blinker
+
+[source,lisp]
+----
 (program led-blinker
   (resource-budget
     (time-ms 10000)
@@ -155,10 +136,12 @@ This document contains shared technical specifications referenced by all task do
         (sleep-ms 500)
         (gpio-set led-cap 0)
         (sleep-ms 500)))))
-```
+----
 
-#### Example 2: Temperature Monitor
-```lisp
+===== Example 2: Temperature Monitor
+
+[source,lisp]
+----
 (program temp-monitor
   (resource-budget
     (time-ms 60000)
@@ -174,10 +157,12 @@ This document contains shared technical specifications referenced by all task do
           (sleep-ms 500)))
       (with-capability network-cap
         (network-send network-cap readings)))))
-```
+----
 
-#### Example 3: Encryption
-```lisp
+===== Example 3: Encryption
+
+[source,lisp]
+----
 (program simple-encrypt
   (resource-budget
     (time-ms 1000)
@@ -191,114 +176,117 @@ This document contains shared technical specifications referenced by all task do
           (array-set result i
             (bitwise-xor (array-get data i) key-byte))))
       result)))
-```
+----
 
-## The 7 Properties to Verify
+=== The 7 Properties to Verify
 
-### 1. Phase Separation Soundness
-**Statement**: No compile-time construct appears in deploy-time code.
+==== 1. Phase Separation Soundness
 
-**Formalization**:
-```
+*Statement*: No compile-time construct appears in deploy-time code.
+
+*Formalization*:
+
+....
 ∀ program P, ∀ expression E ∈ deploy-phase(P),
   compile-only-construct(E) → False
-```
+....
 
-**Verification Strategy**:
-- Static AST analysis
-- Type system enforcement
+*Verification Strategy*: - Static AST analysis - Type system enforcement
 - Formal proof in Lean
 
-### 2. Deployment Termination
-**Statement**: All deploy-time code provably terminates.
+==== 2. Deployment Termination
 
-**Formalization**:
-```
+*Statement*: All deploy-time code provably terminates.
+
+*Formalization*:
+
+....
 ∀ program P, ∀ input I,
   ∃ n ∈ ℕ, eval(deploy-phase(P), I, n) = value
-```
+....
 
-**Verification Strategy**:
-- Bounded loop analysis
-- Call graph acyclicity
-- Ranking functions
-- Resource budget limits
+*Verification Strategy*: - Bounded loop analysis - Call graph acyclicity
+- Ranking functions - Resource budget limits
 
-### 3. Resource Bounds Enforcement
-**Statement**: Resource usage never exceeds declared budgets.
+==== 3. Resource Bounds Enforcement
 
-**Formalization**:
-```
+*Statement*: Resource usage never exceeds declared budgets.
+
+*Formalization*:
+
+....
 ∀ program P with budget B, ∀ execution trace T,
   resources(T) ≤ B
-```
+....
 
-**Verification Strategy**:
-- Static resource analysis
-- WCET (Worst-Case Execution Time) analysis
-- Memory usage analysis
-- Formal proof of bounds
+*Verification Strategy*: - Static resource analysis - WCET (Worst-Case
+Execution Time) analysis - Memory usage analysis - Formal proof of
+bounds
 
-### 4. Capability System Soundness
-**Statement**: I/O operations only succeed within capability scope and budget.
+==== 4. Capability System Soundness
 
-**Formalization**:
-```
+*Statement*: I/O operations only succeed within capability scope and
+budget.
+
+*Formalization*:
+
+....
 ∀ I/O operation Op, ∀ execution E,
   success(Op, E) → ∃ capability C ∈ scope(E), allows(C, Op)
-```
+....
 
-**Verification Strategy**:
-- Linear type system
-- Effect tracking
-- Budget consumption analysis
+*Verification Strategy*: - Linear type system - Effect tracking - Budget
+consumption analysis
 
-### 5. Obfuscation Semantic Preservation
-**Statement**: Code morphing preserves program semantics.
+==== 5. Obfuscation Semantic Preservation
 
-**Formalization**:
-```
+*Statement*: Code morphing preserves program semantics.
+
+*Formalization*:
+
+....
 ∀ program P, ∀ morphed variant P',
   ∀ input I, eval(P, I) ≈ eval(P', I)
-```
+....
+
 (where ≈ is observational equivalence)
 
-**Verification Strategy**:
-- Translation validation
-- Bisimulation proofs
+*Verification Strategy*: - Translation validation - Bisimulation proofs
 - Property-based testing
 
-### 6. Call Graph Acyclicity
-**Statement**: No recursion in deploy-time code.
+==== 6. Call Graph Acyclicity
 
-**Formalization**:
-```
+*Statement*: No recursion in deploy-time code.
+
+*Formalization*:
+
+....
 ∀ program P, call-graph(deploy-phase(P)) is acyclic
-```
+....
 
-**Verification Strategy**:
-- Static call graph construction
-- Cycle detection
-- Topological sort
+*Verification Strategy*: - Static call graph construction - Cycle
+detection - Topological sort
 
-### 7. Memory Safety
-**Statement**: All memory accesses within bounds.
+==== 7. Memory Safety
 
-**Formalization**:
-```
+*Statement*: All memory accesses within bounds.
+
+*Formalization*:
+
+....
 ∀ array access A[i] in execution E,
   0 ≤ i < length(A)
-```
+....
 
-**Verification Strategy**:
-- Bounds check insertion
-- Static array bounds analysis
-- Proof of access safety
+*Verification Strategy*: - Bounds check insertion - Static array bounds
+analysis - Proof of access safety
 
-## BOINC Work Unit Design
+=== BOINC Work Unit Design
 
-### Work Unit Structure
-```json
+==== Work Unit Structure
+
+[source,json]
+----
 {
   "unit_id": "uuid",
   "type": "property_test",
@@ -311,10 +299,12 @@ This document contains shared technical specifications referenced by all task do
   "timeout_seconds": 300,
   "memory_limit_mb": 512
 }
-```
+----
 
-### Result Structure
-```json
+==== Result Structure
+
+[source,json]
+----
 {
   "unit_id": "uuid",
   "volunteer_id": "uuid",
@@ -325,10 +315,12 @@ This document contains shared technical specifications referenced by all task do
   "memory_used_bytes": 45678,
   "hash": "sha256-of-results"
 }
-```
+----
 
-### Validation Logic (Ada)
-```ada
+==== Validation Logic (Ada)
+
+[source,ada]
+----
 procedure Validate_Result(
   Unit : Work_Unit;
   Result : Work_Result;
@@ -356,14 +348,16 @@ begin
   -- Check property verification results
   Is_Valid := Validate_Property_Results(Unit, Result);
 end Validate_Result;
-```
+----
 
-## ArangoDB Schema Details
+=== ArangoDB Schema Details
 
-### Document Collections
+==== Document Collections
 
-#### `programs`
-```json
+===== `+programs+`
+
+[source,json]
+----
 {
   "_key": "program-uuid",
   "source": "oblibeny source code",
@@ -377,10 +371,12 @@ end Validate_Result;
   "created_at": "ISO8601 timestamp",
   "status": "pending|testing|verified|counterexample"
 }
-```
+----
 
-#### `work_units`
-```json
+===== `+work_units+`
+
+[source,json]
+----
 {
   "_key": "unit-uuid",
   "program_id": "program-uuid",
@@ -391,10 +387,12 @@ end Validate_Result;
   "created_at": "timestamp",
   "assigned_to": ["volunteer-uuid-1", "volunteer-uuid-2"]
 }
-```
+----
 
-#### `results`
-```json
+===== `+results+`
+
+[source,json]
+----
 {
   "_key": "result-uuid",
   "work_unit_id": "unit-uuid",
@@ -409,10 +407,12 @@ end Validate_Result;
   "validation_status": "pending|valid|invalid",
   "submitted_at": "timestamp"
 }
-```
+----
 
-#### `proofs`
-```json
+===== `+proofs+`
+
+[source,json]
+----
 {
   "_key": "proof-uuid",
   "property_id": 1-7,
@@ -425,10 +425,12 @@ end Validate_Result;
   },
   "last_updated": "timestamp"
 }
-```
+----
 
-#### `properties`
-```json
+===== `+properties+`
+
+[source,json]
+----
 {
   "_key": "1-7",
   "name": "Phase Separation Soundness",
@@ -438,10 +440,12 @@ end Validate_Result;
   "status": "unproven|partial|proven|counterexample",
   "proof_id": "proof-uuid"
 }
-```
+----
 
-#### `volunteers`
-```json
+===== `+volunteers+`
+
+[source,json]
+----
 {
   "_key": "volunteer-uuid",
   "boinc_id": "external-id",
@@ -452,43 +456,51 @@ end Validate_Result;
   "joined_at": "timestamp",
   "last_active": "timestamp"
 }
-```
+----
 
-### Graph Collections
+==== Graph Collections
 
-#### `proof_dependencies` (edge collection)
-```json
+===== `+proof_dependencies+` (edge collection)
+
+[source,json]
+----
 {
   "_from": "proofs/proof-uuid",
   "_to": "proofs/lemma-uuid",
   "dependency_type": "requires|uses|extends"
 }
-```
+----
 
-#### `program_variants` (edge collection)
-```json
+===== `+program_variants+` (edge collection)
+
+[source,json]
+----
 {
   "_from": "programs/original-uuid",
   "_to": "programs/morphed-uuid",
   "morphing_strategy": "control_flow|instruction_scheduling",
   "semantic_equivalence": "proven|assumed|testing"
 }
-```
+----
 
-#### `property_coverage` (edge collection)
-```json
+===== `+property_coverage+` (edge collection)
+
+[source,json]
+----
 {
   "_from": "programs/program-uuid",
   "_to": "properties/property-id",
   "coverage_status": "tests|verifies|violates",
   "evidence": ["result-uuid-1", "result-uuid-2"]
 }
-```
+----
 
-### AQL Queries (Examples)
+==== AQL Queries (Examples)
 
-**Find unreliable volunteers**:
-```aql
+*Find unreliable volunteers*:
+
+[source,aql]
+----
 FOR v IN volunteers
   FILTER v.reliability_score < 0.9
   SORT v.reliability_score ASC
@@ -498,27 +510,33 @@ FOR v IN volunteers
     valid: v.valid_results,
     invalid: v.invalid_results
   }
-```
+----
 
-**Get proof dependency tree**:
-```aql
+*Get proof dependency tree*:
+
+[source,aql]
+----
 FOR v, e, p IN 1..10 OUTBOUND 'proofs/main-theorem'
   GRAPH 'proof_dependencies'
   RETURN p
-```
+----
 
-**Find programs testing specific property**:
-```aql
+*Find programs testing specific property*:
+
+[source,aql]
+----
 FOR p IN programs
   FOR prop IN OUTBOUND p property_coverage
     FILTER prop._key == '1'
     RETURN p
-```
+----
 
-## Development Environment
+=== Development Environment
 
-### Nix Flake Structure
-```nix
+==== Guix Flake Structure
+
+[source,guix]
+----
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -531,10 +549,12 @@ FOR p IN programs
       # ... package definitions
     );
 }
-```
+----
 
-### Nickel Configuration Schema
-```nickel
+==== Nickel Configuration Schema
+
+[source,nickel]
+----
 {
   Server = {
     host | String,
@@ -557,33 +577,37 @@ FOR p IN programs
     },
   },
 }
-```
+----
 
-## Testing Strategy
+=== Testing Strategy
 
-### Unit Tests
-- **Rust Parser**: Parse all example programs, verify AST structure
-- **Elixir Coordinator**: Test work unit generation, result aggregation
-- **Lean Proofs**: Each lemma has test cases
+==== Unit Tests
 
-### Integration Tests
-- End-to-end work unit flow
-- Database consistency checks
-- BOINC integration
+* *Rust Parser*: Parse all example programs, verify AST structure
+* *Elixir Coordinator*: Test work unit generation, result aggregation
+* *Lean Proofs*: Each lemma has test cases
 
-### Property-Based Testing
-- Generate random valid Oblibeny programs
-- Verify parser roundtrip
-- Test semantic preservation
+==== Integration Tests
 
-### Benchmark Suite
-- Parser performance (target: <100ms for typical programs)
-- Work unit generation rate
-- Result validation throughput
+* End-to-end work unit flow
+* Database consistency checks
+* BOINC integration
 
-## Deployment Architecture
+==== Property-Based Testing
 
-```
+* Generate random valid Oblibeny programs
+* Verify parser roundtrip
+* Test semantic preservation
+
+==== Benchmark Suite
+
+* Parser performance (target: <100ms for typical programs)
+* Work unit generation rate
+* Result validation throughput
+
+=== Deployment Architecture
+
+....
 ┌─────────────────────────────────────────────────────────┐
 │ VPS (Ubuntu/NixOS)                                      │
 │ ┌─────────────────────────────────────────────────────┐ │
@@ -597,89 +621,98 @@ FOR p IN programs
 │ │ └─────────────────────────────────────────────────┘ │ │
 │ └─────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────┘
-```
+....
 
-## Security Considerations
+=== Security Considerations
 
-### Code Signing
-- All work units signed by server
-- Volunteers verify signatures
-- Prevents tampering
+==== Code Signing
 
-### Result Validation
-- Multiple redundancy (3x default)
-- Quorum consensus (2/3)
-- Statistical outlier detection
-- Blacklist unreliable volunteers
+* All work units signed by server
+* Volunteers verify signatures
+* Prevents tampering
 
-### Network Security
-- HTTPS for all communication
-- TLS 1.3 minimum
-- Certificate pinning
+==== Result Validation
 
-### Database Security
-- Authentication required
-- Role-based access control
-- Audit logging
-- Encrypted backups
+* Multiple redundancy (3x default)
+* Quorum consensus (2/3)
+* Statistical outlier detection
+* Blacklist unreliable volunteers
 
-## Performance Targets
+==== Network Security
 
-- **Parser**: < 100ms for 1000-line programs
-- **Work Generation**: 1000 units/second
-- **Result Validation**: 500 results/second
-- **Database Queries**: < 50ms for complex queries
-- **Dashboard Updates**: Real-time (< 1s latency)
-- **BOINC Server**: 10,000 concurrent volunteers
+* HTTPS for all communication
+* TLS 1.3 minimum
+* Certificate pinning
 
-## Monitoring & Observability
+==== Database Security
 
-### Metrics (Prometheus)
-- Work units generated/second
-- Results validated/second
-- Property verification progress
-- Volunteer count/reliability
-- Database performance
+* Authentication required
+* Role-based access control
+* Audit logging
+* Encrypted backups
 
-### Logging (Structured)
-- All components use JSON logging
-- Centralized via syslog
-- Log levels: DEBUG, INFO, WARN, ERROR
+=== Performance Targets
 
-### Alerts
-- BOINC server down
-- Database connection loss
-- Validator crashes
-- Abnormal result patterns
-- Proof assistant errors
+* *Parser*: < 100ms for 1000-line programs
+* *Work Generation*: 1000 units/second
+* *Result Validation*: 500 results/second
+* *Database Queries*: < 50ms for complex queries
+* *Dashboard Updates*: Real-time (< 1s latency)
+* *BOINC Server*: 10,000 concurrent volunteers
 
-## Git Workflow
+=== Monitoring & Observability
 
-- **Main Branch**: `main` (protected)
-- **Feature Branches**: `feature/<name>`
-- **Release Branches**: `release/v<version>`
-- **Hotfix Branches**: `hotfix/<issue>`
+==== Metrics (Prometheus)
 
-**Commit Message Format**:
-```
+* Work units generated/second
+* Results validated/second
+* Property verification progress
+* Volunteer count/reliability
+* Database performance
+
+==== Logging (Structured)
+
+* All components use JSON logging
+* Centralized via syslog
+* Log levels: DEBUG, INFO, WARN, ERROR
+
+==== Alerts
+
+* BOINC server down
+* Database connection loss
+* Validator crashes
+* Abnormal result patterns
+* Proof assistant errors
+
+=== Git Workflow
+
+* *Main Branch*: `+main+` (protected)
+* *Feature Branches*: `+feature/<name>+`
+* *Release Branches*: `+release/v<version>+`
+* *Hotfix Branches*: `+hotfix/<issue>+`
+
+*Commit Message Format*:
+
+....
 <type>(<scope>): <subject>
 
 <body>
 
 <footer>
-```
+....
 
-Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+Types: `+feat+`, `+fix+`, `+docs+`, `+style+`, `+refactor+`, `+test+`,
+`+chore+`
 
-## License
+=== License
 
 To be determined (likely GPL or AGPL for copyleft + network provision).
 
-## Contributors
+=== Contributors
 
-- Initial development: Autonomous Claude session (2024)
-- Project conception: [User]
+* Initial development: Autonomous Claude session (2024)
+* Project conception: [User]
 
----
+'''''
 
-**Note**: This is a living document. Update as the project evolves.
+*Note*: This is a living document. Update as the project evolves.

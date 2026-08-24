@@ -1,16 +1,15 @@
-<!--
-SPDX-License-Identifier: CC-BY-SA-4.0
-Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
--->
-# Task 4: Nickel Configuration System
+== Task 4: Nickel Configuration System
 
-## Objective
+=== Objective
+
 Type-safe configuration management for all deployment environments.
 
-## Deliverables
+=== Deliverables
 
-### 1. Schema Definition
-```nickel
+==== 1. Schema Definition
+
+[source,nickel]
+----
 {
   ServerConfig = {
     host | String | default = "0.0.0.0",
@@ -44,13 +43,15 @@ Type-safe configuration management for all deployment environments.
     else
       config,
 }
-```
+----
 
-### 2. Environment Configs
-- Development
-- Staging
-- Production
+==== 2. Environment Configs
 
-### 3. Secrets Management
-- Environment variable injection
-- Secret rotation support
+* Development
+* Staging
+* Production
+
+==== 3. Secrets Management
+
+* Environment variable injection
+* Secret rotation support
