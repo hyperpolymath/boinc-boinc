@@ -1,409 +1,60 @@
-// SPDX-License-Identifier: CC-BY-SA-4.0
-// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-= Governance Model
-:toc: left
-:toclevels: 3
-:icons: font
-:sectanchors:
-:sectlinks:
-:experimental:
+== Governance
 
-== Overview
+=== Overview
 
-The Oblibeny BOINC Platform operates under a *Tri-Perimeter Contribution Framework (TPCF)* combined with principles of *Mutually Assured Accountability (MAA)*. This governance model balances openness with security, enabling community participation while maintaining quality and safety standards.
+This project is governed by the following principles and structures to
+ensure transparent, inclusive, and effective decision-making.
 
-== Core Principles
+=== Roles and Responsibilities
 
-=== 1. Distributed Trust
+==== Maintainers
 
-No single point of failure in governance. Decisions require consensus from multiple Perimeter 1 maintainers.
+Maintainers are responsible for: - Reviewing and merging pull requests -
+Managing releases and versioning - Ensuring code quality and standards -
+Triaging issues and bug reports - Community engagement and support
 
-=== 2. Reversibility
+==== Contributors
 
-All governance decisions can be reversed if they prove harmful. We learn from mistakes without fear.
+Contributors are expected to: - Follow the code of conduct - Submit
+well-documented pull requests - Write tests for new functionality -
+Maintain existing tests - Update documentation as needed
 
-=== 3. Transparency
-
-Decision-making processes are documented publicly. Financial transactions are auditable.
-
-=== 4. Meritocracy with Safety
-
-Advancement based on demonstrated contributions, but never at the expense of community safety or well-being.
-
-=== 5. Emotional Safety
-
-Psychological safety is paramount. Blameless post-mortems, constructive feedback, and assuming good faith.
-
-== Tri-Perimeter Contribution Framework (TPCF)
-
-=== Perimeter 3: Community Sandbox
+=== Decision Making
 
-*Who*: Anyone with a GitHub/GitLab account
+==== Minor Changes
 
-*Permissions*:
-* Open issues
-* Comment on issues/MRs
-* Fork repository
-* Submit merge requests
-* Read all public documentation
+* Can be made by any maintainer
+* Include bug fixes, documentation updates, dependency updates
 
-*Process*:
-. Fork the repository
-. Create a feature branch
-. Make changes following link:CONTRIBUTING.adoc[CONTRIBUTING.adoc]
-. Submit a merge request (MR)
-. Address feedback from Perimeter 2 reviewers
-. Upon approval, changes are merged by Perimeter 2
+==== Major Changes
 
-*Advancement Criteria to Perimeter 2*:
-* 5+ accepted merge requests
-* Demonstrated understanding of project architecture
-* Adherence to code of conduct
-* Positive community interactions
-* Nominated by at least 2 Perimeter 1 maintainers
+* Require discussion in issues or pull requests
+* Include new features, architectural changes, API changes
+* Need approval from at least 2 maintainers
 
-=== Perimeter 2: Trusted Contributors
+==== Breaking Changes
 
-*Who*: Contributors with proven track record
+* Require RFC (Request for Comments) process
+* Need approval from majority of maintainers
+* Must include migration guide
 
-*Permissions*:
-* All Perimeter 3 permissions
-* Review merge requests
-* Approve merge requests (requires 2 approvals for merge)
-* Direct push to non-protected branches
-* Triage issues (labels, assignments)
-* Access to project Matrix/Discord channels
+=== Code of Conduct
 
-*Responsibilities*:
-* Review MRs within 7 days
-* Mentor Perimeter 3 contributors
-* Enforce code quality standards
-* Report security issues promptly
-* Participate in architectural discussions
+All participants are expected to follow our Code of Conduct. Violations
+can be reported to the maintainers.
 
-*Advancement Criteria to Perimeter 1*:
-* 6+ months as Perimeter 2
-* 20+ reviewed merge requests
-* Demonstrated deep understanding of codebase
-* Proposed architectural improvements
-* Unanimous approval from existing Perimeter 1
+=== Communication
 
-*Demotion Criteria*:
-* Inactive for 6+ months (automatic, reversible upon return)
-* Code of conduct violation (case-by-case)
-* Repeated low-quality reviews
-* Loss of 2/3 vote from Perimeter 1
+* *Issues*: For bug reports and feature requests
+* *Discussions*: For questions and general discussion
+* *Pull Requests*: For code contributions
 
-=== Perimeter 1: Core Maintainers
+=== Licensing
 
-*Who*: Project stewards with full authority
+All contributions are made under the terms of the repository’s LICENSE
+file. By submitting a pull request, you agree to license your
+contributions accordingly.
 
-*Current Members*:
-* See link:MAINTAINERS.md[MAINTAINERS.md] for up-to-date list
+'''''
 
-*Permissions*:
-* All Perimeter 2 permissions
-* Merge to protected branches (main, release/*)
-* Create releases and tags
-* Manage repository settings
-* Access to infrastructure (servers, DNS, CI/CD secrets)
-* Financial decisions (within budget)
-* Final say on architectural decisions
-
-*Responsibilities*:
-* Maintain project vision and roadmap
-* Security incident response
-* Release management
-* Infrastructure maintenance
-* Financial transparency
-* Succession planning
-* Community health and safety
-
-*Obligations*:
-* Respond to security issues within 4 hours (critical)
-* Participate in monthly governance meetings
-* Review and merge time-sensitive MRs within 48 hours
-* Maintain RSR compliance
-* Publish quarterly transparency reports
-
-*Demotion/Removal*:
-* Voluntary stepping down (always reversible)
-* Inactive for 12+ months (automatic, reversible)
-* Code of conduct violation (unanimous vote of other Perimeter 1)
-* Loss of 3/4 vote from Perimeter 1 + 2/3 vote from Perimeter 2
-
-== Decision-Making Process
-
-=== Routine Decisions
-
-*Scope*: Bug fixes, documentation updates, minor refactoring
-
-*Process*:
-. Perimeter 3 submits MR
-. Perimeter 2 reviews (2 approvals required)
-. Merge
-
-*Timeline*: 1-7 days
-
-=== Significant Decisions
-
-*Scope*: New features, dependency additions, architecture changes
-
-*Process*:
-. RFC (Request for Comments) opened as issue
-. Community discussion (minimum 7 days)
-. Perimeter 1 review
-. Consensus vote (simple majority of Perimeter 1)
-. Implementation proceeds
-
-*Timeline*: 2-4 weeks
-
-=== Major Decisions
-
-*Scope*: Breaking changes, license changes, governance changes, mergers/partnerships
-
-*Process*:
-. RFC with detailed rationale
-. Community discussion (minimum 30 days)
-. Perimeter 2 vote (advisory, 2/3 majority)
-. Perimeter 1 vote (binding, 3/4 majority)
-. Public announcement
-. Implementation roadmap
-
-*Timeline*: 1-3 months
-
-=== Emergency Decisions
-
-*Scope*: Security vulnerabilities, legal threats, infrastructure outages
-
-*Process*:
-. Any Perimeter 1 can act unilaterally
-. Notify other Perimeter 1 within 1 hour
-. Public disclosure within 24 hours (or when safe)
-. Post-mortem within 7 days
-. Community retrospective
-
-*Timeline*: Immediate
-
-== Conflict Resolution
-
-=== Step 1: Direct Communication
-
-Parties attempt to resolve disagreement privately via:
-* Matrix/Discord DM
-* Email
-* Video call
-
-=== Step 2: Mediation
-
-If unresolved after 7 days:
-* Assign neutral Perimeter 1 mediator
-* Facilitated discussion
-* Document perspectives
-
-=== Step 3: Arbitration
-
-If still unresolved:
-* Present to all Perimeter 1
-* Each side presents case (written + optional presentation)
-* Perimeter 1 votes (simple majority)
-* Decision is binding but can be appealed after 90 days
-
-=== Step 4: Code of Conduct Enforcement
-
-If CoC violation suspected:
-* Report to conduct@oblibeny.org
-* Confidential investigation
-* Enforcement per link:CODE_OF_CONDUCT.adoc[CODE_OF_CONDUCT.adoc]
-
-== Financial Governance
-
-=== Budget Authority
-
-[cols="1,2,1", options="header"]
-|===
-| Amount (USD) | Authority | Approval Required
-
-| < $100
-| Any Perimeter 1
-| Post-hoc notification
-
-| $100 - $1,000
-| Any Perimeter 1
-| 2/3 Perimeter 1 approval
-
-| $1,000 - $10,000
-| Treasury lead
-| 3/4 Perimeter 1 approval
-
-| > $10,000
-| Treasury lead
-| Unanimous Perimeter 1 + community RFC
-|===
-
-=== Income Sources
-
-* Individual donations (https://liberapay.com/oblibeny[Liberapay], https://opencollective.com/oblibeny[OpenCollective])
-* Organizational sponsorships
-* Grants (research, FOSS, sustainability)
-* Consulting/support contracts (if offered)
-
-*Principle*: No single funding source exceeds 50% of annual budget (prevents capture).
-
-=== Expenditure Priorities
-
-. Security audits and infrastructure
-. Contributor stipends and bounties
-. Conference travel for maintainers
-. Marketing and outreach
-. Legal and compliance
-
-=== Transparency
-
-* Monthly financial reports published
-* All transactions > $100 disclosed
-* Annual audit (when budget > $50k/year)
-* Public ledger on OpenCollective
-
-== Intellectual Property
-
-=== Copyright
-
-* All contributions licensed under link:LICENSE.txt[MIT AND Palimpsest-0.8]
-* Contributors retain copyright to their contributions
-* No copyright assignment required
-* No Contributor License Agreement (CLA) required
-
-=== Developer Certificate of Origin (DCO)
-
-Contributors sign off commits with:
-
-----
-Signed-off-by: Your Name <your.email@example.com>
-----
-
-This certifies you have the right to contribute under the project licenses.
-
-=== Trademarks
-
-* "Oblibeny" name and logo are trademarks
-* Use allowed for:
-  - Referring to this project
-  - Building compatible tools
-  - Community events/merchandise (with attribution)
-* Use *not* allowed for:
-  - Implying official endorsement
-  - Commercial products without permission
-  - Misleading uses
-
-== Succession Planning
-
-=== Maintainer Departure
-
-When Perimeter 1 member leaves:
-
-. Announce intention 30+ days in advance (if planned)
-. Transfer knowledge to remaining Perimeter 1
-. Revoke infrastructure access
-. Promote replacement from Perimeter 2 (if needed)
-
-=== Project Sunset
-
-If project becomes unmaintainable:
-
-. 90-day notice to community
-. Archive repository (read-only)
-. Export data (issues, wiki, etc.)
-. Provide data migration guides
-. Redirect domains to archive
-
-*Commitment*: Never orphan a project. Always plan for graceful degradation.
-
-== Amendment Process
-
-This governance document can be amended via:
-
-. RFC proposing changes
-. 30-day community comment period
-. 3/4 vote from Perimeter 1
-. 2/3 vote from Perimeter 2 (advisory)
-. Changes take effect 30 days after vote
-
-*Exception*: Typos and clarifications can be fixed via normal MR process.
-
-== Mutually Assured Accountability (MAA)
-
-=== Reputation System
-
-* Contributors earn reputation through:
-  - Merged MRs
-  - Reviewed MRs
-  - Security reports
-  - Community support
-* Reputation visible on contributor profiles
-* Used for advancement, not punishment
-
-=== Monitoring
-
-* All repository actions logged
-* Security-sensitive actions (release, secrets) require 2FA
-* Perimeter 1 actions auditable by Perimeter 2
-* Annual governance review
-
-=== Obligations
-
-[cols="1,2,1", options="header"]
-|===
-| Role | Obligation | Accountability
-
-| Perimeter 3
-| Follow CoC, submit quality contributions
-| MR rejection, issue ban
-
-| Perimeter 2
-| Review MRs promptly, mentor contributors
-| Demotion for inactivity/misconduct
-
-| Perimeter 1
-| Maintain project health, security, community
-| Removal via supermajority vote
-|===
-
-== Formal Verification of Governance
-
-*Aspiration*: Encode governance rules in Lean 4 to formally verify:
-
-* No deadlock states (decisions can always be made)
-* No privilege escalation without proper approval
-* Reversibility of all actions (within time bounds)
-* Byzantine fault tolerance (malicious actors can't hijack project)
-
-*Status*: Conceptual (not yet implemented)
-
-== Contact
-
-*Governance Questions*: governance@oblibeny.org
-
-*Conflict Resolution*: mediation@oblibeny.org
-
-*Financial Questions*: treasury@oblibeny.org
-
-*General Questions*: hello@oblibeny.org
-
-== Version History
-
-[cols="1,1,2", options="header"]
-|===
-| Version | Date | Changes
-
-| 1.0
-| 2024-11-23
-| Initial governance document with TPCF and MAA
-
-|===
-
----
-
-*Document Status*: Living Document (amendments tracked in git history)
-
-*SPDX-License-Identifier*: CC0-1.0 (this document is public domain)
+_Last updated: 2026-07-18_

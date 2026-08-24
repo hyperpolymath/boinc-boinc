@@ -1,16 +1,16 @@
-<!--
-SPDX-License-Identifier: CC-BY-SA-4.0
-Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
--->
-# Task 3: Guix Build System
+== Task 3: Guix Build System
 
-## Objective
-Create reproducible builds for all Oblibeny BOINC components using Guix flakes.
+=== Objective
 
-## Deliverables
+Create reproducible builds for all Oblibeny BOINC components using Guix
+flakes.
 
-### 1. Main Flake
-```guix
+=== Deliverables
+
+==== 1. Main Flake
+
+[source,guix]
+----
 {
   description = "Oblibeny BOINC Platform";
 
@@ -54,20 +54,23 @@ Create reproducible builds for all Oblibeny BOINC components using Guix flakes.
       }
     );
 }
-```
+----
 
-### 2. Component Packages
-- Rust parser Guix derivation
-- Elixir coordinator package
-- Lean proofs build
-- Phoenix dashboard assets
+==== 2. Component Packages
 
-### 3. Cross-compilation
-- Linux x86_64
-- Linux ARM64 (for volunteers)
-- macOS support
+* Rust parser Guix derivation
+* Elixir coordinator package
+* Lean proofs build
+* Phoenix dashboard assets
 
-### 4. Binary Cache
-- Setup Cachix or self-hosted cache
-- Pre-build common dependencies
-- Fast CI/CD builds
+==== 3. Cross-compilation
+
+* Linux x86_64
+* Linux ARM64 (for volunteers)
+* macOS support
+
+==== 4. Binary Cache
+
+* Setup Cachix or self-hosted cache
+* Pre-build common dependencies
+* Fast CI/CD builds

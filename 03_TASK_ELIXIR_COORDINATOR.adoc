@@ -1,48 +1,53 @@
-<!--
-SPDX-License-Identifier: CC-BY-SA-4.0
-Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
--->
-# Task 2: Elixir/OTP Coordinator
+== Task 2: Elixir/OTP Coordinator
 
-## Objective
-Build distributed coordination system for managing BOINC work units, result aggregation, and proof orchestration using Elixir/OTP.
+=== Objective
 
-## Deliverables
+Build distributed coordination system for managing BOINC work units,
+result aggregation, and proof orchestration using Elixir/OTP.
 
-### 1. OTP Application Structure
-- Supervision tree for fault tolerance
-- GenServers for state management
-- Task supervisors for work generation
-- Pooling for database connections
+=== Deliverables
 
-### 2. Work Generator
-- Generate test programs from grammar
-- Create work units with redundancy
-- Batch work unit creation
-- Priority queue for properties
+==== 1. OTP Application Structure
 
-### 3. Result Validator
-- Aggregate redundant results
-- Quorum consensus (2/3)
-- Detect Byzantine failures
-- Update proof progress
+* Supervision tree for fault tolerance
+* GenServers for state management
+* Task supervisors for work generation
+* Pooling for database connections
 
-### 4. ArangoDB Integration
-- Connection pooling
-- AQL query builders
-- Transaction support
-- Graph traversal for proof dependencies
+==== 2. Work Generator
 
-### 5. BOINC Integration
-- Work unit XML generation
-- Result processing
-- Volunteer tracking
-- Credit/badging system
+* Generate test programs from grammar
+* Create work units with redundancy
+* Batch work unit creation
+* Priority queue for properties
 
-## Implementation
+==== 3. Result Validator
 
-### Supervision Tree
-```elixir
+* Aggregate redundant results
+* Quorum consensus (2/3)
+* Detect Byzantine failures
+* Update proof progress
+
+==== 4. ArangoDB Integration
+
+* Connection pooling
+* AQL query builders
+* Transaction support
+* Graph traversal for proof dependencies
+
+==== 5. BOINC Integration
+
+* Work unit XML generation
+* Result processing
+* Volunteer tracking
+* Credit/badging system
+
+=== Implementation
+
+==== Supervision Tree
+
+[source,elixir]
+----
 defmodule Coordinator.Application do
   use Application
 
@@ -58,10 +63,12 @@ defmodule Coordinator.Application do
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
-```
+----
 
-### Work Generator
-```elixir
+==== Work Generator
+
+[source,elixir]
+----
 defmodule Coordinator.WorkGenerator do
   use GenServer
 
@@ -82,10 +89,12 @@ defmodule Coordinator.WorkGenerator do
     {:reply, work_units, state}
   end
 end
-```
+----
 
-### Database Module
-```elixir
+==== Database Module
+
+[source,elixir]
+----
 defmodule Coordinator.Database do
   use GenServer
 
@@ -101,10 +110,11 @@ defmodule Coordinator.Database do
     query(aql, %{unit: unit})
   end
 end
-```
+----
 
-## File Structure
-```
+=== File Structure
+
+....
 elixir-coordinator/
 ├── mix.exs
 ├── config/
@@ -123,10 +133,12 @@ elixir-coordinator/
 │   └── coordinator_web/
 │       └── api/
 └── test/
-```
+....
 
-## Dependencies
-```elixir
+=== Dependencies
+
+[source,elixir]
+----
 defp deps do
   [
     {:arangox, "~> 0.5"},
@@ -136,4 +148,4 @@ defp deps do
     {:telemetry_metrics, "~> 0.6"}
   ]
 end
-```
+----

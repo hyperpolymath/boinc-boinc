@@ -1,51 +1,54 @@
-<!--
-SPDX-License-Identifier: CC-BY-SA-4.0
-Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
--->
-# Task 1: Rust Parser & Analyzer
+== Task 1: Rust Parser & Analyzer
 
-## Objective
-Build a complete parser and analyzer for Oblibeny that can:
-1. Parse Oblibeny source code into AST
-2. Separate compile-time and deploy-time phases
-3. Analyze resource usage and termination
-4. Generate test vectors for BOINC work units
+=== Objective
 
-## Deliverables
+Build a complete parser and analyzer for Oblibeny that can: 1. Parse
+Oblibeny source code into AST 2. Separate compile-time and deploy-time
+phases 3. Analyze resource usage and termination 4. Generate test
+vectors for BOINC work units
 
-### 1. Parser (`src/parser/`)
-- pest-based PEG parser from EBNF grammar
-- Complete coverage of Oblibeny v0.6 syntax
-- Error reporting with line/column information
-- Parser combinators for reusability
+=== Deliverables
 
-### 2. AST (`src/ast/`)
-- Typed AST representation
-- Pattern matching support
-- Visitor pattern for traversal
-- Pretty-printing for debugging
+==== 1. Parser (`+src/parser/+`)
 
-### 3. Phase Separator (`src/phases/`)
-- Identify compile-time vs deploy-time code
-- Validate phase boundaries
-- Extract deploy-time subset for verification
+* pest-based PEG parser from EBNF grammar
+* Complete coverage of Oblibeny v0.6 syntax
+* Error reporting with line/column information
+* Parser combinators for reusability
 
-### 4. Analyzer (`src/analyzer/`)
-- **Termination**: Bounded loop checking, call graph acyclicity
-- **Resources**: WCET, memory bounds, capability budgets
-- **Safety**: Memory access bounds, type checking
+==== 2. AST (`+src/ast/+`)
 
-### 5. CLI Tool
-- Parse and validate Oblibeny programs
-- Generate reports (AST, phase info, resources)
-- Batch processing for BOINC integration
+* Typed AST representation
+* Pattern matching support
+* Visitor pattern for traversal
+* Pretty-printing for debugging
 
-## Implementation Plan
+==== 3. Phase Separator (`+src/phases/+`)
 
-### Step 1: pest Grammar
+* Identify compile-time vs deploy-time code
+* Validate phase boundaries
+* Extract deploy-time subset for verification
+
+==== 4. Analyzer (`+src/analyzer/+`)
+
+* *Termination*: Bounded loop checking, call graph acyclicity
+* *Resources*: WCET, memory bounds, capability budgets
+* *Safety*: Memory access bounds, type checking
+
+==== 5. CLI Tool
+
+* Parse and validate Oblibeny programs
+* Generate reports (AST, phase info, resources)
+* Batch processing for BOINC integration
+
+=== Implementation Plan
+
+==== Step 1: pest Grammar
+
 Convert EBNF to pest syntax:
 
-```pest
+[source,pest]
+----
 program = { SOI ~ form* ~ EOI }
 form = { list | atom | string | number }
 list = { "(" ~ form* ~ ")" }
@@ -57,10 +60,12 @@ bounded_for = { "(" ~ "bounded-for" ~ ident ~ expr ~ expr ~ form* ~ ")" }
 // Compile-time constructs
 defun_compile = { "(" ~ "defun-compile" ~ ident ~ param_list ~ form* ~ ")" }
 macro_def = { "(" ~ "macro" ~ ident ~ param_list ~ form* ~ ")" }
-```
+----
 
-### Step 2: AST Design
-```rust
+==== Step 2: AST Design
+
+[source,rust]
+----
 pub enum Expr {
     Int(i64),
     Float(f64),
@@ -85,10 +90,12 @@ pub enum Phase {
     Deploy,
     Mixed, // Error state
 }
-```
+----
 
-### Step 3: Phase Separation Algorithm
-```rust
+==== Step 3: Phase Separation Algorithm
+
+[source,rust]
+----
 pub struct PhaseSeparator {
     compile_only_constructs: HashSet<&'static str>,
     deploy_only_constructs: HashSet<&'static str>,
@@ -111,10 +118,12 @@ impl PhaseSeparator {
         }
     }
 }
-```
+----
 
-### Step 4: Resource Analyzer
-```rust
+==== Step 4: Resource Analyzer
+
+[source,rust]
+----
 pub struct ResourceAnalyzer {
     call_graph: CallGraph,
 }
@@ -139,10 +148,12 @@ impl ResourceAnalyzer {
         }
     }
 }
-```
+----
 
-### Step 5: Termination Checker
-```rust
+==== Step 5: Termination Checker
+
+[source,rust]
+----
 pub struct TerminationChecker {
     call_graph: CallGraph,
 }
@@ -162,27 +173,31 @@ impl TerminationChecker {
         Ok(())
     }
 }
-```
+----
 
-## Testing Strategy
+=== Testing Strategy
 
-### Unit Tests
-- Parse all example programs
-- Verify AST structure
-- Test phase separation
-- Resource analysis correctness
+==== Unit Tests
 
-### Property Tests
-- Generate random valid programs
-- Parse → pretty-print → parse roundtrip
-- Resource bounds never negative
+* Parse all example programs
+* Verify AST structure
+* Test phase separation
+* Resource analysis correctness
 
-### Benchmarks
-- Parse 1000-line programs in < 100ms
-- Analysis overhead < 50ms
+==== Property Tests
 
-## File Structure
-```
+* Generate random valid programs
+* Parse → pretty-print → parse roundtrip
+* Resource bounds never negative
+
+==== Benchmarks
+
+* Parse 1000-line programs in < 100ms
+* Analysis overhead < 50ms
+
+=== File Structure
+
+....
 rust-parser/
 ├── Cargo.toml
 ├── src/
@@ -211,10 +226,12 @@ rust-parser/
     ├── parser_tests.rs
     ├── phase_tests.rs
     └── analyzer_tests.rs
-```
+....
 
-## Dependencies
-```toml
+=== Dependencies
+
+[source,toml]
+----
 [dependencies]
 pest = "2.7"
 pest_derive = "2.7"
@@ -227,13 +244,15 @@ clap = { version = "4.5", features = ["derive"] }
 [dev-dependencies]
 proptest = "1.4"
 criterion = "0.5"
-```
+----
 
-## Next Steps
-1. Implement pest grammar
-2. Build AST types
-3. Write parser
-4. Implement phase separator
-5. Build resource analyzer
-6. Add CLI
-7. Write comprehensive tests
+=== Next Steps
+
+[arabic]
+. Implement pest grammar
+. Build AST types
+. Write parser
+. Implement phase separator
+. Build resource analyzer
+. Add CLI
+. Write comprehensive tests
