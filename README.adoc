@@ -4,7 +4,7 @@ https://github.com/hyperpolymath/palimpsest-license[image:https://img.shields.io
 
 link:RSR_COMPLIANCE.adoc[image:%7Brsr-badge%7D[RSR Level]]
 link:LICENSE.txt[image:%7Blicense-badge%7D[License]]
-link:CONTRIBUTING.adoc#tpcf[image:%7Btpcf-badge%7D[TPCF]]
+link:.github/CONTRIBUTING.md#tpcf[image:%7Btpcf-badge%7D[TPCF]]
 link:.well-known/security.txt[image:%7Bsecurity-badge%7D[Security]]
 
 *The first programming language developed with the cooperation of a
