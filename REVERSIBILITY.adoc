@@ -421,7 +421,7 @@ truly erased, only overlaid. This enables:
 * LICENSE.txt - MPL-2.0 v0.8
 * GOVERNANCE.adoc - Governance reversibility
 * SECURITY.md - Security incident reversibility
-* CONTRIBUTING.adoc - Contribution process
+* .github/CONTRIBUTING.md - Contribution process
 
 '''''
 
