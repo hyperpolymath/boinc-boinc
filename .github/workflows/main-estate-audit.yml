@@ -1,3 +1,5 @@
+# This workflow is managed by gh actions-lock.
+
 name: Central Estate CI/CD Audit
 
 on:
