@@ -32,7 +32,7 @@ gnu-grep = "latest"
 # Task runner alias
 [alias]
 task = "go-task"
-build = "cargo build --release"
-test = "cargo test"
+build = "cargo build --release --manifest-path rust-parser/Cargo.toml"
+test = "cargo test --manifest-path rust-parser/Cargo.toml"
 lint = "bun install --frozen-lockfile && bunx --no-install --bun prettier --check ."
 fmt = "bun install --frozen-lockfile && bunx --no-install --bun prettier --write ."
